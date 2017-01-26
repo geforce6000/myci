@@ -66,7 +66,7 @@
 
 			$keyword = $this->input->post('forsearching'); //接收来自header.php搜索框的数据
 
-			$this->load->model('Article_model', 'article');
+			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
 
 			$data=$this->article->getmorearticle($keyword); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
 
