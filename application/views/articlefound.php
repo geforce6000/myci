@@ -12,8 +12,11 @@
 		{
 
 		echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$row->title.'</a></p>';
+		//逐条显示文件链接
 
 		}
+
+		echo $links; //显示分页链接
 
 
 	}

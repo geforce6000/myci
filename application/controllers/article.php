@@ -64,11 +64,43 @@
 
 		{
 
-			$keyword = $this->input->post('forsearching'); //接收来自header.php搜索框的数据
-
 			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
 
-			$data=$this->article->getmorearticle($keyword); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
+			$this->load->helper('url');
+
+			if ($this->input->post('forsearching') !== NULL)
+
+			{
+
+				$keyword = $this->input->post('forsearching'); //接收来自header.php搜索框的数据
+
+			}
+
+			else
+
+			{
+
+				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
+
+			}
+
+			$startwith=intval($this->uri->segment(4));
+
+			$data=$this->article->getmorearticle($keyword, $startwith); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
+
+			$this->load->library('pagination');//载入分页类
+
+			$config['base_url'] = site_url('article/search/').$keyword.'/'; //生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
+
+			$config['total_rows'] = $data['found'];
+
+			$config['per_page'] = 20;
+
+//			$config['reuse_query_string'] = true;
+
+			$this->pagination->initialize($config);
+
+			$res['links'] = $this->pagination->create_links();
 
 			if($this->db->affected_rows()==0) {
 
@@ -82,7 +114,7 @@
 
 				$res['found']=true;
 
-				$res['data']=$data; //查询到数据后把数据附加到$res数组中
+				$res['data']=$data['data']; //查询到数据后把数据附加到$res数组中
 
 			}
 
@@ -92,7 +124,7 @@
 
 			$this->load->view('footer');
 
-
 		}
+
 	}
 ?>

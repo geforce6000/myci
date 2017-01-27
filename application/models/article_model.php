@@ -26,16 +26,30 @@
 		}
 */
 
-		public function getmorearticle($key)
+		public function getmorearticle($key, $startwith)
 
 		{
+
+			$allfound=$this->db->from('article')
+				->select('title, articleid')
+				->like('title', $key)
+				->get();
+			//这一次是查询符合条件的记录总数并记录
+
+			$allfound=$this->db->affected_rows();
 
 			$articlemore=$this->db->from('article')
 				->select('title, articleid')
 				->like('title', $key)
+				->limit(20, $startwith)
 				->get();
+			//这一次是查询20条记录
 
-			return $articlemore->result();
+			$res['found']=$allfound;
+
+			$res['data']=$articlemore->result();
+
+			return $res;
 
 		}
 
