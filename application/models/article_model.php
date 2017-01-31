@@ -53,6 +53,21 @@
 
 		}
 
+		public function getarticlebyclass($classid='')
+		
+		{
+			
+			//根据文章的classid(类别号)获取相关类别的全部文章
+			
+			$articlefound=$this->db->from('article')
+				->select('title, articleid')
+				->where('classid', $classid)
+				->get();
+
+			return $articlefound->result();
+
+		}
+
 	}
 
 ?>

@@ -7,6 +7,10 @@
 
 	{
 
+		$startwith+=1;
+
+		echo "<p>搜索 $keyword 共找到 $datascale 条记录，正在显示第 $startwith - $endwith 条</p>";
+
 		foreach ($data as $row)
 
 		{

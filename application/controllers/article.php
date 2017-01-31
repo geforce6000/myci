@@ -80,7 +80,7 @@
 
 			{
 
-				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了(NULL)，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
+				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了($this->input->post('forsearching') == NULL)，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
 
 			}
 
@@ -114,6 +114,12 @@
 
 				$res['found']=true;
 
+				$res['datascale']=$data['found'];
+
+				$res['startwith']=$startwith;
+
+				$res['endwith']=$startwith+$this->db->affected_rows();
+
 				$res['data']=$data['data']; //查询到数据后把数据附加到$res数组中
 
 			}
@@ -121,6 +127,44 @@
 			$this->load->view('header');
 
 			$this->load->view('articlefound',$res); //把数据传递给视图articlefound
+
+			$this->load->view('footer');
+
+		}
+
+		public function ac ()
+
+		{
+
+			//根据文章的classid来显示相关分类的文章，还没做分页
+
+			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
+
+			$articleclass=$this->uri->segment(3);
+
+			$data=$this->article->getarticlebyclass($articleclass); //调用Article_model模型中的getarticlebyclass方法
+
+			if($this->db->affected_rows()==0) 
+
+			{
+
+				$res['found']=false; //affected_rows()==0 表示没有查询到数据
+			
+			}
+
+			else
+
+			{
+
+				$res['found']=true;
+
+				$res['data']=$data; //查询到数据后把数据附加到$res数组中
+
+			}
+
+			$this->load->view('header');
+
+			$this->load->view('articlebyclass',$res); 
 
 			$this->load->view('footer');
 
