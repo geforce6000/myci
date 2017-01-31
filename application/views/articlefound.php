@@ -11,7 +11,12 @@
 
 		{
 
-		echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$row->title.'</a></p>';
+			$redtitle=str_replace($keyword, "<font color='#FF0000'>".$keyword."</font>", $row->title);
+			//
+			//echo $redtitle;
+
+			echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$redtitle.'</a></p>';
+		
 		//逐条显示文件链接
 
 		}

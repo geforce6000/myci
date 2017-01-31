@@ -80,7 +80,7 @@
 
 			{
 
-				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
+				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了(NULL)，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
 
 			}
 
@@ -92,15 +92,15 @@
 
 			$config['base_url'] = site_url('article/search/').$keyword.'/'; //生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
 
-			$config['total_rows'] = $data['found'];
+			$config['total_rows'] = $data['found'];//model中进行了两次查询，第一次查询全部的总数用于设定分页时的总数项
 
-			$config['per_page'] = 20;
-
-//			$config['reuse_query_string'] = true;
+			$config['per_page'] = 20; //每页20条信息
 
 			$this->pagination->initialize($config);
 
-			$res['links'] = $this->pagination->create_links();
+			$res['links'] = $this->pagination->create_links(); //把生成的links放到传递数组中
+
+			$res['keyword'] = $keyword;
 
 			if($this->db->affected_rows()==0) {
 
