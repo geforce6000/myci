@@ -7,7 +7,7 @@
 
 	{
 
-		$startwith+=1;
+		$startwith+=1; //计算机计数以0开始，实际显示的起始数应该加1
 
 		echo "<p>搜索 $keyword 共找到 $datascale 条记录，正在显示第 $startwith - $endwith 条</p>";
 
@@ -16,12 +16,10 @@
 		{
 
 			$redtitle=str_replace($keyword, "<font color='#FF0000'>".$keyword."</font>", $row->title);
-			//
-			//echo $redtitle;
+			//把title中的关键字颜色设成红色
 
 			echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$redtitle.'</a></p>';
-		
-		//逐条显示文件链接
+			//逐条显示文件链接
 
 		}
 

@@ -77,11 +77,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<?php
 
-			echo $summary.'<br/>';
-
 			foreach ($article as $row)
 				{
 				    echo $row['articleid'].'</br>'.$row['title'].'</br>'.$row['updatetime'].'</br>';
+				    
 				    echo $row['content'].'</br>';
 				}
 

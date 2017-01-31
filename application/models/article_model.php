@@ -4,7 +4,7 @@
 
 	{
 
-		public function getonearticle ($id)
+		public function getarticlebyid ($id)
 
 		{ //根据传入的$id进行文章查询
 

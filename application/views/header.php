@@ -30,7 +30,7 @@
 
 	echo form_open(site_url('article/search'));//使用form辅助函数，产生一个form头，中间使用site_url()函数产生规范的url地址，搜索框的内容提交到article控制器的search方法
 
-	echo form_input('forsearching');//input框
+	echo form_input('forsearching','搜索');//input框
 
 	echo form_submit('tosearch', '搜索');//submit按钮
 

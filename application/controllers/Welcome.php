@@ -35,8 +35,6 @@ class Welcome extends CI_Controller {
 
 		$data['article']=$query->result_array();
 
-		$data['summary']=$this->db->affected_rows();
-
 		$this->load->view('header');
 
 		$this->load->view('welcome_message',$data);
