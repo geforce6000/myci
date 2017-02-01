@@ -82,31 +82,75 @@
 
 			{
 
-				$keyword= urldecode($this->uri->segment(3)); //从第二页开始，post方式已经没有值了($this->input->post('forsearching') == NULL)，只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
+				$keyword= urldecode($this->uri->segment(3));
+				//从第二页开始，post方式已经没有值了($this->input->post('forsearching') == NULL)，
+				//只能放在url第3段来传递搜索关键字，中文的话会有乱码，所以用urldecode()来解码
 
 			}
 
 			$startwith=intval($this->uri->segment(4));
 
-			$data=$this->article->searchbykey($keyword, $startwith); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
+			$data=$this->article->searchbykey($keyword, $startwith); 
+			//调用Article_model的searchbykey方法，把接收的数据$keyword和$startwith(搜索偏移位置)传过去，
+			//用$data接收查询到的数据，$data是一个对象
 
 			$this->load->library('pagination');//载入分页类
 
-			$config['base_url'] = site_url('article/search/').$keyword.'/'; //生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
+			$config['base_url'] = site_url('article/search/').$keyword.'/';
+			//生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，
+			//来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，
+			//所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
 
-			$config['total_rows'] = $data['found'];//model中进行了两次查询，第一次查询全部的总数用于设定分页时的总数项
+			$config['total_rows'] = $data['found'];
+			//model中进行了两次查询，第一次查询全部的总数用于设定分页时的总数项
 
-			$config['per_page'] = 20; //每页20条信息
+			$config['per_page'] = 20;
+			//每页20条信息
+
+			$config['first_link'] = FALSE;
+			//不显示第一页标记
+
+			$config['last_link'] = FALSE;
+			//不显示最后一页标记
+
+			$config['prev_link'] = FALSE;
+			//不显示上一页标记
+
+			$config['next_link'] = FALSE;
+			//不显示下一页标记
+
+			$config['full_tag_open'] = '<ul class="pagination">';
+			//加在整个分页链接前面的标记，这里加的是与bootstrap分页标记相配的html标记
+
+			$config['full_tag_close'] = '</ul>';
+			//加在整个分页链接最后的标记
+
+			$config['num_tag_open'] = '<li>';
+			//加在数字页码之前的标记
+
+			$config['num_tag_close'] = '</li>';
+			//加在数字页码之后的标记
+
+			$config['cur_tag_open'] = '<li class="active"><a href="#">';
+			//加在当前页码之前的标记
+
+			$config['cur_tag_close'] = '</a></li>';
+			//加在当前页码之后的标记
+			
+			//对分页类进行了更加详细的配置，给整个分页链接加上了<ul></ul>标记，给每一个数字链接加上了<li></li>标记
+			//这样与bootstrap框架的分页功能就配合起来了
 
 			$this->pagination->initialize($config);
 
-			$res['links'] = $this->pagination->create_links(); //把生成的links放到传递数组中
+			$res['links'] = $this->pagination->create_links();
+			//把生成的links放到传递数组中
 
 			$res['keyword'] = $keyword;
 
 			if($this->db->affected_rows()==0) {
 
-				$res['found']=false; //没有查到数据
+				$res['found']=false;
+				//没有查到数据
 			
 			}
 

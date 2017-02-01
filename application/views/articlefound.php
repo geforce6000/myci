@@ -24,8 +24,13 @@
 		}
 
 		echo $links; //显示分页链接
+/*
+		$linkarray=explode('><a', $links);
 
-
+		foreach ($linkarray as $row) {
+			echo "行首: $row";
+		}
+*/
 	}
 
 	else
