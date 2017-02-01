@@ -107,11 +107,19 @@
 			$config['per_page'] = 20;
 			//每页20条信息
 
-			$config['first_link'] = FALSE;
+			$config['first_link'] = '首页';
 			//不显示第一页标记
+			
+			$config['first_tag_open'] = '<li>';
 
-			$config['last_link'] = FALSE;
+			$config['first_tag_close'] = '</li>';
+
+			$config['last_link'] = '尾页';
 			//不显示最后一页标记
+			
+			$config['last_tag_open'] = '<li>';
+
+			$config['last_tag_close'] = '</li>';
 
 			$config['prev_link'] = FALSE;
 			//不显示上一页标记
@@ -119,10 +127,10 @@
 			$config['next_link'] = FALSE;
 			//不显示下一页标记
 
-			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_open'] = '<div class="pagination-centered"><ul class="pagination">';
 			//加在整个分页链接前面的标记，这里加的是与bootstrap分页标记相配的html标记
 
-			$config['full_tag_close'] = '</ul>';
+			$config['full_tag_close'] = '</ul></div>';
 			//加在整个分页链接最后的标记
 
 			$config['num_tag_open'] = '<li>';
@@ -131,7 +139,7 @@
 			$config['num_tag_close'] = '</li>';
 			//加在数字页码之后的标记
 
-			$config['cur_tag_open'] = '<li class="active"><a href="#">';
+			$config['cur_tag_open'] = '<li class="current"><a href="#">';
 			//加在当前页码之前的标记
 
 			$config['cur_tag_close'] = '</a></li>';
