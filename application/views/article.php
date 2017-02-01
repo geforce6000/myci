@@ -9,6 +9,8 @@
 
 		echo '<h2>'.$data->title.'</h2>';
 
+		echo '<h5>'.'分类ID：'.$data->classid.'</h5>';
+
 		echo '<h5>'.'发布人：'.$data->poster.'</h5>';
 
 		echo '<h5>'.'发布时间：'.$data->updatetime.'</h5>';

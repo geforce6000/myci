@@ -6,7 +6,7 @@
 
 		public function id() 
 
-		{
+		{ //根据articleid调取一条记录并返回给article视图显示
 
 			$this->load->model('Article_model','article'); //调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
 
@@ -36,16 +36,18 @@
 		
 	
 		}
+/*
+		public function cf()
 
-/*		public function cf() //用于一次性数据转换，将原来数据库中的UploadFiles文件夹前加一个\，不可再用了
-
-		{
+		{ //用于一次性数据转换，将原来数据库中的UploadFiles文件夹前加一个\，不可再用了
 
 			$this->load->model('Article_model','article');
 
 			$wa=$this->db->get('article'); //获取整个article表
 
-			foreach ($wa->result() as $row) {
+			foreach ($wa->result() as $row)
+
+			{
 
 				$cbdata['content']=str_replace("UploadFiles","\UploadFiles",$row->content);
 
@@ -58,11 +60,11 @@
 			}
 
 		}
-*/
 
+*/
 		public function search ()
 
-		{
+		{ //根据搜索关键字查询记录返回articlefound视图，每20条视图做一次分页
 
 			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
 
@@ -86,7 +88,7 @@
 
 			$startwith=intval($this->uri->segment(4));
 
-			$data=$this->article->getmorearticle($keyword, $startwith); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
+			$data=$this->article->searchbykey($keyword, $startwith); //调用Article_model的getmorearticle方法，把接收的数据$keyword传过去，用$data接收查询到的数据，$data是一个对象
 
 			$this->load->library('pagination');//载入分页类
 
@@ -104,7 +106,7 @@
 
 			if($this->db->affected_rows()==0) {
 
-				$res['found']=false; //affected_rows()==0 表示没有查询到数据
+				$res['found']=false; //没有查到数据
 			
 			}
 
@@ -112,13 +114,13 @@
 
 			{
 
-				$res['found']=true;
+				$res['found']=true; //有查到数据
 
-				$res['datascale']=$data['found'];
+				$res['datascale']=$data['found']; //整个表中符合条件的记录总数
 
-				$res['startwith']=$startwith;
+				$res['startwith']=$startwith; //本页20条记录起始位置
 
-				$res['endwith']=$startwith+$this->db->affected_rows();
+				$res['endwith']=$startwith+$this->db->affected_rows(); //本页记录的终点位置
 
 				$res['data']=$data['data']; //查询到数据后把数据附加到$res数组中
 
@@ -134,9 +136,7 @@
 
 		public function category ()
 
-		{
-
-			//根据文章的classid来显示相关分类的文章，还没做分页
+		{ //根据文章的classid来显示相关分类的文章，还没做分页
 
 			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
 
