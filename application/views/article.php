@@ -7,13 +7,13 @@
 
 	{
 
-		echo '<h2>'.$data->title.'</h2>';
+		echo '<h2 class="text-center">'.$data->title.'</h2>';
 
-		echo '<h5>'.'分类ID：'.$data->classid.'</h5>';
+		echo '<h5 class="text-center">'.'分类ID：'.$data->classid.'</h5>';
 
-		echo '<h5>'.'发布人：'.$data->poster.'</h5>';
+		echo '<h5 class="text-center">'.'发布人：'.$data->poster.'</h5>';
 
-		echo '<h5>'.'发布时间：'.$data->updatetime.'</h5>';
+		echo '<h5 class="text-center">'.'发布时间：'.$data->updatetime.'</h5>';
 
 		echo '<hr>';
 
@@ -25,7 +25,7 @@
 
 	{
 
-		echo '<h3>'.'没有查到数据'.'</h3>';
+		echo '<h3 class="text-center">没有查到数据</h3>';
 	
 	}
 

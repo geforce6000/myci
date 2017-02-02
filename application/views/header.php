@@ -4,54 +4,81 @@
 <head>
 	<meta charset="UTF-8">
 
+	<!-- 本站使用fundation5前端框架 -->
+
 	<!-- css 文件 -->
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
 
-<!-- jQuery 库 -->
-<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- jQuery 库 -->
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<!-- JavaScript 文件 -->
-<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
+	<!-- JavaScript 文件 -->
+	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
 
-<!-- modernizr.js 文件 -->
-<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+	<!-- modernizr.js 文件 -->
+	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+
+	<link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+
 <!--
 	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 	<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 -->
-		<!-- 自制的css样式表 -->
-	<link rel="stylesheet" href="\css\article.css"> 
+
+	<!-- 自制的css样式表 
+	<link rel="stylesheet" href="\css\article.css"> -->
+	
 </body>
+
 	<title>
+
 		江西九江科技中等专业学校欢迎你
+
 	</title>
+
 <body>
 
+<div class="row">
 
-<!--首页logo-->
+  	<div class="large-8 columns">
 
-<img src="\image\logo.png">
+		<!--首页logo-->
 
+		<img src="\image\logo.png"><i class="magnifying-glass"></i>
 
-<!-- 搜索框 -->
+	</div>
 
-<?
+	<div class="large-4 columns">
 
-	$this->load->helper('url');//载入url辅助函数，为了下面使用site_url()函数
+		<!-- 搜索框 -->
 
-	$this->load->helper('form');//载入form辅助函数
+		<form action="<?php echo site_url('article/search'); ?>" method="post">
 
-	echo form_open(site_url('article/search'));//使用form辅助函数，产生一个form头，中间使用site_url()函数产生规范的url地址，搜索框的内容提交到article控制器的search方法
+			<div class="row collapse postfix">
 
-	echo form_input('forsearching','搜索');//input框
+				<div class="small-9 columns">
 
-	echo form_submit('tosearch', '搜索');//submit按钮
+					<input name="forsearching" type="text" placeholder="搜索">
 
-	echo form_close();//form结束
+				</div>
 
-?>
+				<div class="small-3 columns">
 
+					
+
+						<input type="submit" class="button postfix">
+					
+
+				</div>
+
+			</div>
+
+		</form>
+
+	</div>
+
+</div>
 
 <!-- 导航栏，将来要做成单独的view -->
 
