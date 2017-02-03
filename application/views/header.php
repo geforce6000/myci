@@ -26,8 +26,8 @@
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 -->
 
-	<!-- 自制的css样式表 
-	<link rel="stylesheet" href="\css\article.css"> -->
+	<!-- 自制的css样式表 -->
+	<link rel="stylesheet" href="\css\article.css">
 	
 </body>
 
@@ -39,13 +39,13 @@
 
 <body>
 
-<div class="row">
+<div class="row" id="banner">
 
   	<div class="large-8 columns">
 
 		<!--首页logo-->
 
-		<img src="\image\logo.png"><i class="magnifying-glass"></i>
+		<img src="\image\logo.png">
 
 	</div>
 
@@ -53,37 +53,38 @@
 
 		<!-- 搜索框 -->
 
-		<form action="<?php echo site_url('article/search'); ?>" method="post">
+		<div id="search">
 
-			<div class="row collapse postfix">
+			<form action="<?php echo site_url('article/search'); ?>" method="post">
 
-				<div class="small-9 columns">
+				<div class="row collapse postfix">
 
-					<input name="forsearching" type="text" placeholder="搜索">
+					<div class="small-9 columns">
+
+						<input name="forsearching" type="text" placeholder="搜索">
+
+					</div>
+
+					<div class="small-3 columns">
+
+						<input type="submit" value="搜索" class="button postfix">
+
+					</div>
 
 				</div>
 
-				<div class="small-3 columns">
-
-					
-
-						<input type="submit" class="button postfix">
-					
-
-				</div>
-
-			</div>
-
-		</form>
+			</form>
+			
+		</div>
 
 	</div>
 
 </div>
 
-<!-- 导航栏，将来要做成单独的view -->
+
 
 <div class="row">
-		<div>
+<!-- 导航栏，将来要做成单独的view 		<div>
 			<div class="medium-12 columns">
 				<ul class="">
 					<li class="">
@@ -122,3 +123,4 @@
 			</div>
 		</div>
 		<hr>
+		-->

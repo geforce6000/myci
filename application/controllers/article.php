@@ -216,6 +216,8 @@
 
 		{ //根据文章的classid来显示相关分类的文章，还没做分页
 
+			$this->load->helper('url');
+
 			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
 
 			$articleclass=$this->uri->segment(3);
@@ -247,6 +249,30 @@
 			$this->load->view('footer');
 
 		}
+/*
+		public function cg ()
 
+		{ //临时用于改写部分文章的classid，将article中原classid=segment(3)的改为segment(4)
+
+			$oldid=$this->uri->segment(3);
+
+			$newid=$this->uri->segment(4);
+			
+			echo "oldid: $oldid<br/>";
+			
+			echo "newid: $newid<br/>";
+			
+			$data = array(
+    			'classid' => $newid);
+
+			$this->db->where('classid', $oldid);
+			
+			$this->db->update('article', $data);
+			
+			echo 'affected_rows: '.$this->db->affected_rows();
+		
+		}
+*/
 	}
+
 ?>
