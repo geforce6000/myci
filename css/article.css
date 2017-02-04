@@ -1,6 +1,11 @@
 #banner {
 	margin: 25px auto;
 }
+
 #search {
 	margin-top: 18px;
+}
+
+#nav {
+	margin:0 auto 18px;
 }

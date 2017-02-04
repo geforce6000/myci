@@ -12,6 +12,11 @@
 
 			$data=$this->article->getarticlebyid($this->uri->segment(3)); //调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
 
+			$this->load->model('Nav_model', 'nav');
+			//调用Nav_model模型，起别名nav
+
+			$res=$this->nav->nav();
+
 			if($this->db->affected_rows()==0) {
 
 				$res['found']=false; //affected_rows()==0 表示没有查询到数据
@@ -32,7 +37,9 @@
 
 			$this->load->view('header');
 
-			$this->load->view('article',$res); //把数据传递给视图
+			$this->load->view('nav',$res);
+
+			$this->load->view('article'); //把数据传递给视图
 
 			$this->load->view('footer');
 		
@@ -72,6 +79,11 @@
 
 			$this->load->helper('url');
 
+			$this->load->model('Nav_model', 'nav');
+			//调用Nav_model模型，起别名nav
+
+			$res=$this->nav->nav();
+
 			if(($this->input->post('forsearching') == NULL) and ($this->uri->segment(4) == NULL))
 
 			{
@@ -84,7 +96,9 @@
 
 				$this->load->view('header');
 
-				$this->load->view('articlefound',$res); //把数据传递给视图articlefound
+				$this->load->view('nav',$res);
+
+				$this->load->view('articlefound'); //把数据传递给视图articlefound
 
 				$this->load->view('footer');
 
@@ -204,7 +218,9 @@
 
 				$this->load->view('header');
 
-				$this->load->view('articlefound',$res); //把数据传递给视图articlefound
+				$this->load->view('nav',$res);
+
+				$this->load->view('articlefound'); //把数据传递给视图articlefound
 
 				$this->load->view('footer');
 
@@ -219,6 +235,12 @@
 			$this->load->helper('url');
 
 			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
+
+			$this->load->model('Nav_model', 'nav');
+			//调用Nav_model模型，起别名nav
+
+			$res=$this->nav->nav();
+			//获取导航条数据
 
 			$articleclass=$this->uri->segment(3);
 
@@ -244,7 +266,9 @@
 
 			$this->load->view('header');
 
-			$this->load->view('articlebyclass',$res); 
+			$this->load->view('nav',$res);
+
+			$this->load->view('articlebyclass'); 
 
 			$this->load->view('footer');
 

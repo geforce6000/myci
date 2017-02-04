@@ -20,6 +20,18 @@
 
 	<link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
 
+	<script>
+
+		$(document).ready(function()
+
+		{
+    		
+    		$(document).foundation();
+
+		})
+
+	</script>
+
 <!--
 	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 	<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -83,44 +95,4 @@
 
 
 
-<div class="row">
-<!-- 导航栏，将来要做成单独的view 		<div>
-			<div class="medium-12 columns">
-				<ul class="">
-					<li class="">
-						<a href="">
-							首页
-						</a>
-					</li>
-					<li id="">
-						<a href="">
-							资料
-						</a>
-						<ul id="" class="" style="display: none;">
-							<li id="">
-								工程管理系
-							</li>
-							<li>
-								工程管理系
-							</li>
-							<li>
-								信息技术系
-							</li>
-							<li>
-								旅游商贸系
-							</li>
-							<li>
-								人文系
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">
-							信息
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<hr>
-		-->
+

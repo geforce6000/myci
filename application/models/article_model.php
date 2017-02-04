@@ -30,7 +30,7 @@
 */
 		public function searchbykey($key, $startwith)
 
-		{ //根据传入的$key从article数据表中查询符合条件的数据，$startwith是传入偏移量，
+		{ //根据传入的$key从article数据表中查询符合条件的数据，$startwith是传入偏移量，返回记录按articleid倒序排列
 
 			$allfound=$this->db->from('article')
 				->select('title, articleid')
@@ -42,6 +42,7 @@
 
 			$articlemore=$this->db->from('article')
 				->select('title, articleid')
+				->order_by('articleid','DESC')
 				->like('title', $key)
 				->limit(20, $startwith)
 				->get();
@@ -57,11 +58,12 @@
 
 		public function getarticlebyclass($classid='')
 		
-		{ //根据文章的classid(类别号)获取相关类别的全部文章
+		{ //根据文章的classid(类别号)获取相关类别的全部文章，返回结果按articleid倒序排列
 			
 			$articlefound=$this->db->from('article')
 				->select('title, articleid')
 				->where('classid', $classid)
+				->order_by('articleid', 'DESC')
 				->get();
 
 			return $articlefound->result();

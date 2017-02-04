@@ -7,13 +7,11 @@
 
 	{
 
-		echo '<h2 class="text-center">'.$data->title.'</h2>';
+		echo '<h4 class="text-center">'.$data->title.'</h2>';
 
-		echo '<h5 class="text-center">'.'分类ID：'.$data->classid.'</h5>';
+		echo '<h5 class="text-center">'.$data->poster.'</h5>';
 
-		echo '<h5 class="text-center">'.'发布人：'.$data->poster.'</h5>';
-
-		echo '<h5 class="text-center">'.'发布时间：'.$data->updatetime.'</h5>';
+		echo '<h5 class="text-center">'.$data->updatetime.'</h5>';
 
 		echo '<hr>';
 
