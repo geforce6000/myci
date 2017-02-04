@@ -138,6 +138,9 @@
 				//生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，
 				//来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，
 				//所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
+				
+				$config['first_url'] = site_url('article/search/').$keyword.'/0';
+				//定义第1页强制从article/search/$keyword/0开始，避免从第2页回到第1页时因为segment(4)消失导致的搜索失败
 
 				$config['total_rows'] = $data['found'];
 				//model中进行了两次查询，第一次查询全部的总数用于设定分页时的总数项
@@ -246,7 +249,7 @@
 
 			$data=$this->article->getarticlebyclass($articleclass); //调用Article_model模型中的getarticlebyclass方法
 
-			if($this->db->affected_rows()==0) 
+			if($data['found']==0) 
 
 			{
 
@@ -260,7 +263,9 @@
 
 				$res['found']=true;
 
-				$res['data']=$data; //查询到数据后把数据附加到$res数组中
+				$res['data']=$data['data']; //查询到数据后把数据附加到$res数组中
+
+				$res['navlink']=$data['navlink'];
 
 			}
 
@@ -286,8 +291,7 @@
 			
 			echo "newid: $newid<br/>";
 			
-			$data = array(
-    			'classid' => $newid);
+			$data = array('classid' => $newid);
 
 			$this->db->where('classid', $oldid);
 			

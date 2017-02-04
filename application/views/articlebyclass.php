@@ -7,6 +7,10 @@
 
 	{
 
+		echo $navlink;
+
+		//echo '<p><a href="'.base_url('article/category/').$parrentname->classid.'">'.$parrentname->classname.'</a> > '.'<a href="'.base_url('article/category/').$childrenname->classid.'">'.$childrenname->classname.'</a></p>';
+
 		foreach ($data as $row)
 
 		{
