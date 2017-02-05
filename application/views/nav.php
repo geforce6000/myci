@@ -46,6 +46,12 @@
 				<?php endforeach; ?>
 
       		</ul>
+
+      		<ul class="right" id="admin">
+
+      			<li><button type="button" class="button" data-reveal-id="myModal">后台入口</button></li>
+
+      		</ul>
       
     	</section>
   
@@ -55,4 +61,21 @@
 
 </div>
 
-<div class="row">
+<div id="myModal" class="reveal-modal tiny" data-reveal>
+
+    <h2>管理员登陆</h2>
+
+    <form action="<?php echo site_url('admin/login')?>" method="post">
+
+    	<input type="text" name="userid" id="userid" placeholder="用户名">
+
+    	<input type="password" name="userpw" id="userpw" placeholder="密码">
+    	
+    	<input class="button" type="submit" value="提交">
+    
+    </form>
+    
+    <a class="close-reveal-modal">&times;</a>
+
+</div>
+

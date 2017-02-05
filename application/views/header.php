@@ -1,7 +1,9 @@
 <!-- 通用页头模板 -->
 
 <!DOCTYPE html>
+
 <head>
+
 	<meta charset="UTF-8">
 
 	<!-- 本站使用fundation5前端框架 -->
@@ -41,7 +43,7 @@
 	<!-- 自制的css样式表 -->
 	<link rel="stylesheet" href="\css\article.css">
 	
-</body>
+</head>
 
 	<title>
 

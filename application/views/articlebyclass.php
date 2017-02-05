@@ -1,6 +1,8 @@
 
 <!-- 按classid显示该分类全部文章，按顺序逐条显示articleid和title，并做成超链接可以点击，点击后打开article页面-->
 
+<div class="row">
+
 <?php
 
 	if ($found)
@@ -34,10 +36,13 @@
 
 	{
 
-		echo '<h3>'.'没有查到数据'.'</h3>';
+		echo '<h3>'.'没有相关文章'.'</h3>';
 	
 	}
 
 
 
 ?>
+
+
+</div>

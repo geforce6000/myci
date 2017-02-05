@@ -32,9 +32,7 @@
 				$res['data']=$data[0]; //把查询到的数据传到$res数组中
 
 			}
-
-			$this->load->helper('url');
-
+			
 			$this->load->view('header');
 
 			$this->load->view('nav',$res);
@@ -76,8 +74,6 @@
 		{ //根据搜索关键字查询记录返回articlefound视图，每20条视图做一次分页
 
 			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
-
-			$this->load->helper('url');
 
 			$this->load->model('Nav_model', 'nav');
 			//调用Nav_model模型，起别名nav
@@ -234,8 +230,6 @@
 		public function category ()
 
 		{ //根据文章的classid来显示相关分类的文章，还没做分页
-
-			$this->load->helper('url');
 
 			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
 
