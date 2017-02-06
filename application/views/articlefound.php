@@ -1,7 +1,7 @@
 
 <!-- 搜索文章结果视图，按顺序逐条显示articleid和title，并做成超链接可以点击，点击后打开article页面-->
 
-<div class="row">
+<div class="row" id="mainframe">
 
 <?php
 
@@ -11,7 +11,7 @@
 
 		$startwith+=1; //计算机计数以0开始，实际显示的起始数应该加1
 
-		echo "<p>搜索 $keyword 共找到 $datascale 条记录，正在显示第 $startwith - $endwith 条</p>";
+		echo "<p>共找到 $datascale 条记录，正在显示第 $startwith - $endwith 条</p>";
 
 		foreach ($data as $row)
 

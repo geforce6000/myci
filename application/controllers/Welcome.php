@@ -39,7 +39,11 @@ class Welcome extends CI_Controller {
 
 		$newslist=$this->article->getarticlebyclass(97,0,10);
 
-		$res['newslist']=$newslist;		
+		$res['newslist']=$newslist;	
+
+		$bulletin=$this->article->getarticlebyclass(100,0,10);
+
+		$res['bulletin']=$bulletin;
 
 		$this->load->helper('url');
 

@@ -127,68 +127,19 @@
 				$data=$this->article->searchbykey($keyword, $startwith); 
 				//调用Article_model的searchbykey方法，把接收的数据$keyword和$startwith(搜索偏移位置)传过去，
 				//用$data接收查询到的数据，$data是一个对象
-
-				$this->load->library('pagination');//载入分页类
-
-				$config['base_url'] = site_url('article/search/').$keyword.'/';
-				//生成分页类的url，其中这个$keyword来源有两个途径，一个是首次在搜索框中输入的，就是上面的$this->input->post('forsearching')，
-				//来自header表单提交的数据，第二个途径是分页到第2页时，$this->input->post('forsearching')的数据为NULL，
-				//所以设置在$this->uri->segment(3)上，作为url方式的传值，类似传统的GET方式
 				
-				$config['first_url'] = site_url('article/search/').$keyword.'/0';
-				//定义第1页强制从article/search/$keyword/0开始，避免从第2页回到第1页时因为segment(4)消失导致的搜索失败
+				$this->load->model('Pagination_model', 'pagi');
+				//把分页类的配置代码做成一个分页模型，便于重复调用
 
-				$config['total_rows'] = $data['found'];
-				//model中进行了两次查询，第一次查询全部的总数用于设定分页时的总数项
+				$paginationinfo = array(
+						'url' => 'article/search/',
+						'keyword' => $keyword,
+						'per_page' => 20,
+						'total_rows' => $data['total_rows']);
+				//配置分页类所需要的4个参数，做成数组供分页模型使用
 
-				$config['per_page'] = 20;
-				//每页20条信息
-
-				$config['first_link'] = '首页';
-				//不显示第一页标记
-				
-				$config['first_tag_open'] = '<li>';
-
-				$config['first_tag_close'] = '</li>';
-
-				$config['last_link'] = '尾页';
-				//不显示最后一页标记
-				
-				$config['last_tag_open'] = '<li>';
-
-				$config['last_tag_close'] = '</li>';
-
-				$config['prev_link'] = FALSE;
-				//不显示上一页标记
-
-				$config['next_link'] = FALSE;
-				//不显示下一页标记
-
-				$config['full_tag_open'] = '<div class="pagination-centered"><ul class="pagination">';
-				//加在整个分页链接前面的标记，这里加的是与Fundation5分页标记相配的html标记
-
-				$config['full_tag_close'] = '</ul></div>';
-				//加在整个分页链接最后的标记
-
-				$config['num_tag_open'] = '<li>';
-				//加在数字页码之前的标记
-
-				$config['num_tag_close'] = '</li>';
-				//加在数字页码之后的标记
-
-				$config['cur_tag_open'] = '<li class="current"><a href="#">';
-				//加在当前页码之前的标记
-
-				$config['cur_tag_close'] = '</a></li>';
-				//加在当前页码之后的标记
-				
-				//对分页类进行了更加详细的配置，给整个分页链接加上了<ul></ul>标记，给每一个数字链接加上了<li></li>标记
-				//这样与Fundation5框架的分页功能就配合起来了
-
-				$this->pagination->initialize($config);
-
-				$res['links'] = $this->pagination->create_links();
-				//把生成的links放到传递数组中
+				$res['links'] = $this->pagi->mypagination($paginationinfo);
+				//调用分页模型中的mypagination方法，把数组做为参数传递，返回值是一个适配fundation前端框架的字符串，直接在页面中echo即可
 
 				$res['keyword'] = $keyword;
 
@@ -205,7 +156,7 @@
 
 					$res['found']=true; //有查到数据
 
-					$res['datascale']=$data['found']; //整个表中符合条件的记录总数
+					$res['datascale']=$data['total_rows']; //整个表中符合条件的记录总数
 
 					$res['startwith']=$startwith; //本页20条记录起始位置
 
@@ -241,13 +192,38 @@
 
 			$articleclass=$this->uri->segment(3);
 
-			$data=$this->article->getarticlebyclass($articleclass); //调用Article_model模型中的getarticlebyclass方法
-
-			if($data['found']==0) 
+			if ($this->uri->segment(4) == NULL)
 
 			{
 
-				$res['found']=false; //affected_rows()==0 表示没有查询到数据
+				$startwith=0;
+
+			}
+
+			else
+
+			{
+
+				$startwith=$this->uri->segment(4);
+
+			}
+
+			$data=$this->article->getarticlebyclass($articleclass, $startwith, 20); //调用Article_model模型中的getarticlebyclass方法
+
+			$this->load->model('Pagination_model', 'pagi');
+
+			$paginationinfo = array(
+					'url' => 'article/category/',
+					'keyword' => $articleclass,
+					'per_page' => 20,
+					'total_rows' => $data['total_rows']);
+			//配置分页类所需要的4个参数			
+
+			if($data['total_rows']==0) 
+
+			{
+
+				$res['found']=false; //$data['total_rows']==0 表示没有查询到数据
 			
 			}
 
@@ -260,6 +236,8 @@
 				$res['data']=$data['data']; //查询到数据后把数据附加到$res数组中
 
 				$res['navlink']=$data['navlink'];
+
+				$res['links'] = $this->pagi->mypagination($paginationinfo);
 
 			}
 

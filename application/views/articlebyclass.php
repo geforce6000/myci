@@ -1,7 +1,7 @@
 
 <!-- 按classid显示该分类全部文章，按顺序逐条显示articleid和title，并做成超链接可以点击，点击后打开article页面-->
 
-<div class="row">
+<div class="row" id="mainframe">
 
 <?php
 
@@ -27,7 +27,7 @@
 
 		}
 
-		//echo $links; //显示分页链接
+		echo $links; //显示分页链接
 
 
 	}

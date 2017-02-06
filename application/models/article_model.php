@@ -32,13 +32,13 @@
 
 		{ //根据传入的$key从article数据表中查询符合条件的数据，$startwith是传入偏移量，返回记录按articleid倒序排列
 
-			$allfound=$this->db->from('article')
+			$total=$this->db->from('article')
 				->select('title, articleid')
 				->like('title', $key)
 				->get();
 			//这一次是查询符合条件的记录总数并记录
 
-			$allfound=$this->db->affected_rows();
+			$total_rows=$this->db->affected_rows();
 
 			$articlemore=$this->db->from('article')
 				->select('title, articleid, poster, updatetime')
@@ -48,7 +48,7 @@
 				->get();
 			//这一次是查询20条记录
 
-			$res['found']=$allfound;
+			$res['total_rows']=$total_rows;
 
 			$res['data']=$articlemore->result();
 
@@ -70,22 +70,17 @@
 
 			if ($getparrentid[0]->parrentid == 0) 
 
-/*			{ //如果记录的父ID==0，表明这是一条根节点，需要将$classid改成此根节点的第1子项的classid
-
-				$classidreplace=$this->db->from('articleclass')
-									->where('parrentid', $classid)
-									->order_by('classid', 'ASC')
-									->limit(1)
-									->get();
-
-				$newclassid=$classidreplace->result();
-
-				$classid=$newclassid[0]->classid;
-
-			}
-*/
-
 			{ //如果记录的父ID=0，表明这是一条根节点，准备调取整个根节点对应的所有子节点的数据并返回
+
+				$totalrecords=$this->db->from('article')
+								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.hits, articleclass.classid')
+								->join('articleclass', 'article.classid = articleclass.classid', 'left')
+								->where('articleclass.parrentid', $classid)
+								->order_by('article.articleid', 'DESC')
+								->get();
+
+				$data['total_rows'] = $this->db->affected_rows();
+				//查询到的记录总条数
 
 				$articlefound=$this->db->from('article')
 								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.hits, articleclass.classid')
@@ -104,7 +99,6 @@
 				//最终发现是这个if语句段里面根本没有return $data;
 				//所以这条SQL语句和上面的AR方法都是正确的，为了保持一贯性，还是使用AR方法，但这一段仍然保留
 */
-				$data['found'] = $this->db->affected_rows();
 
 				$data['data'] = $articlefound->result();
 
@@ -114,7 +108,6 @@
 							->get();
 				
 				$parrentname=$parrent->result();
-
 
 				$children=$this->db->from('articleclass')
 							->select('classname, classid, parrentid')
@@ -149,12 +142,21 @@
 				$articlefound=$this->db->from('article')
 					->select('title, articleid, content, updatetime, hits')
 					->where('classid', $classid)
+					->order_by('articleid', 'DESC')
+					->get();
+
+				$data['total_rows']=$this->db->affected_rows();
+				//查询到的记录总条数
+
+				$articlefound=$this->db->from('article')
+					->select('title, articleid, content, updatetime, hits')
+					->where('classid', $classid)
 					->limit($section, $startwith)
 					->order_by('articleid', 'DESC')
 					->get();
 
-				$data['found']=$this->db->affected_rows();
-				//查询到的记录条数
+				
+				
 
 				$data['data']=$articlefound->result();
 				//查询到的记录数据

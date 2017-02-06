@@ -22,11 +22,15 @@
 
 </div>
 
-<div class="row">
+<div class="row" id="mainframe">
 
 	<div id="body">
 
-		<div class="large-8">
+		<div class="medium-8 columns">
+
+			<h4>新闻动态</h4>
+
+			<hr>
 
 			<div id="news">
 
@@ -45,7 +49,32 @@
 
 		</div>
 
+		<div class="medium-4 columns">
+
+			<h4>最新公告</h4>
+
+			<hr>
+
+			<div id="bulletin">
+
+				<?php 
+
+					foreach ($bulletin['data'] as $row)
+
+					{
+						echo "<a href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a><br>";
+
+					}
+
+				?>
+
+			</div>
+
+		</div>
+
 	<!--p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p-->
+
+</div>
 
 </div>
 
