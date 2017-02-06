@@ -22,19 +22,24 @@ class Welcome extends CI_Controller {
 	public function index()
 
 	{
-
+/*
 		$query=$this->db->from('article')
 			->select('articleid, title, content, updatetime')
 			->order_by('articleid', 'DESC')
 			->limit(1)
 			->get();
+*/
 
 		$this->load->model('Nav_model', 'nav');
 		//调用Nav_model模型，起别名nav
 
 		$res=$this->nav->nav();
 
-		$res['article']=$query->result_array();
+		$this->load->model('Article_model', 'article');
+
+		$newslist=$this->article->getarticlebyclass(97,0,10);
+
+		$res['newslist']=$newslist;		
 
 		$this->load->helper('url');
 

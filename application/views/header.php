@@ -22,6 +22,16 @@
 
 	<link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
 
+	<!--script src=".\js\unslider-min.js"></script>
+
+	<link rel="stylesheet" href="\css\unslider.css"-->
+
+	<!--jQuery图片轮播(焦点图)插件>
+
+	<link href=".\css\jquery.slideBox.css" rel="stylesheet" type="text/css" />
+
+	<script src=".\js\jquery.slideBox.min.js" type="text/javascript"></script-->
+
 	<script>
 
 		$(document).ready(function()
@@ -30,7 +40,9 @@
     		
     		$(document).foundation();
 
-		})
+    		//$('#slidebox').slideBox();
+
+		});
 
 	</script>
 

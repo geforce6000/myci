@@ -67,7 +67,7 @@
 
     <form action="<?php echo site_url('admin/login')?>" method="post">
 
-    	<input type="text" name="userid" id="userid" placeholder="用户名">
+    	<input type="text" name="username" id="username" placeholder="用户名">
 
     	<input type="password" name="userpw" id="userpw" placeholder="密码">
     	

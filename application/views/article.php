@@ -25,7 +25,7 @@
 
 	{
 
-		echo '<h3 class="text-center">没有查到数据</h3>';
+		echo '<h3 class="text-center">没有相关文章</h3>';
 	
 	}
 

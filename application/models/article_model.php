@@ -41,7 +41,7 @@
 			$allfound=$this->db->affected_rows();
 
 			$articlemore=$this->db->from('article')
-				->select('title, articleid')
+				->select('title, articleid, poster, updatetime')
 				->order_by('articleid','DESC')
 				->like('title', $key)
 				->limit(20, $startwith)
@@ -56,9 +56,10 @@
 
 		}
 
-		public function getarticlebyclass($classid)
+		public function getarticlebyclass($classid, $startwith=0, $section=10)
 		
 		{ //根据文章的classid(类别号)获取相关类别的全部文章，返回结果按articleid倒序排列
+		  //$classid是类别号，$section是一节文章数量（用于分页），默认10，$startwith是分页的偏移量，默认0
 
 			$parrentid=$this->db->from('articleclass')
 						->where('classid', $classid)
@@ -87,9 +88,10 @@
 			{ //如果记录的父ID=0，表明这是一条根节点，准备调取整个根节点对应的所有子节点的数据并返回
 
 				$articlefound=$this->db->from('article')
-								->select('article.articleid, article.classid, article.title, articleclass.parrentid, articleclass.classid')
+								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.hits, articleclass.classid')
 								->join('articleclass', 'article.classid = articleclass.classid', 'left')
 								->where('articleclass.parrentid', $classid)
+								->limit($section, $startwith)
 								->order_by('article.articleid', 'DESC')
 								->get();
 /*
@@ -145,8 +147,9 @@
 			{
 
 				$articlefound=$this->db->from('article')
-					->select('title, articleid')
+					->select('title, articleid, content, updatetime, hits')
 					->where('classid', $classid)
+					->limit($section, $startwith)
 					->order_by('articleid', 'DESC')
 					->get();
 

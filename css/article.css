@@ -7,9 +7,13 @@
 }
 
 #nav {
-	margin:0 auto 18px;
+/*	margin:0 auto 18px;*/
 }
 
 #admin {
 	margin-right: 18px;
+}
+
+a {
+	color: black;
 }
