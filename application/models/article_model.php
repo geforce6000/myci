@@ -34,6 +34,7 @@
 
 			$total=$this->db->from('article')
 				->select('title, articleid')
+				->where('deleted !=', 1)
 				->like('title', $key)
 				->get();
 			//这一次是查询符合条件的记录总数并记录
@@ -41,8 +42,9 @@
 			$total_rows=$this->db->affected_rows();
 
 			$articlemore=$this->db->from('article')
-				->select('title, articleid, poster, updatetime')
+				->select('title, articleid, poster, content, defaultpic, updatetime')
 				->order_by('articleid','DESC')
+				->where('deleted !=', 1)
 				->like('title', $key)
 				->limit(20, $startwith)
 				->get();
@@ -73,9 +75,10 @@
 			{ //如果记录的父ID=0，表明这是一条根节点，准备调取整个根节点对应的所有子节点的数据并返回
 
 				$totalrecords=$this->db->from('article')
-								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.hits, articleclass.classid')
+								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.updatetime, article.hits, articleclass.classid')
 								->join('articleclass', 'article.classid = articleclass.classid', 'left')
 								->where('articleclass.parrentid', $classid)
+								->where('deleted !=', 1)
 								->order_by('article.articleid', 'DESC')
 								->get();
 
@@ -83,22 +86,13 @@
 				//查询到的记录总条数
 
 				$articlefound=$this->db->from('article')
-								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.hits, articleclass.classid')
+								->select('article.articleid, article.classid, article.title, articleclass.parrentid, article.content, article.updatetime, article.defaultpic, article.hits, articleclass.classid')
 								->join('articleclass', 'article.classid = articleclass.classid', 'left')
 								->where('articleclass.parrentid', $classid)
+								->where('deleted !=', 1)
 								->limit($section, $startwith)
 								->order_by('article.articleid', 'DESC')
 								->get();
-/*
-				$sql = "SELECT article.articleid, article.classid, article.title, articleclass.parrentid FROM article LEFT JOIN articleclass ON article.classid = articleclass.classid WHERE articleclass.parrentid = $classid ORDER BY article.articleid DESC";
-
-				$articlefound = $this->db->query($sql);
-				//这一段是上面的AR连续方法查询数据之后，视图始终回报无数据，所使用的原始SQL语句来进行查询，因为使用AR连续查询构造类有一个问题，
-				//看不到输出给数据库的SQL语句哪里出错了
-				//之前使用这条SQL语句直接在MYSQL里面可以得出正确结果，但是在视图中始终无数据显示
-				//最终发现是这个if语句段里面根本没有return $data;
-				//所以这条SQL语句和上面的AR方法都是正确的，为了保持一贯性，还是使用AR方法，但这一段仍然保留
-*/
 
 				$data['data'] = $articlefound->result();
 
@@ -117,7 +111,7 @@
 
 				$childrenname=$children->result();
 
-				$navlink='<p><a href="'.base_url('article/category/').$parrentname[0]->classid.'">'.$parrentname[0]->classname.'</a> >';
+				$navlink='<p>当前位置： <a href="'.base_url('article/category/').$parrentname[0]->classid.'">'.$parrentname[0]->classname.'</a> >';
 
 				foreach ($childrenname as $row)
 
@@ -140,8 +134,9 @@
 			{
 
 				$articlefound=$this->db->from('article')
-					->select('title, articleid, content, updatetime, hits')
+					->select('title, articleid, updatetime, hits')
 					->where('classid', $classid)
+					->where('deleted !=', 1)
 					->order_by('articleid', 'DESC')
 					->get();
 
@@ -149,15 +144,13 @@
 				//查询到的记录总条数
 
 				$articlefound=$this->db->from('article')
-					->select('title, articleid, content, updatetime, hits')
+					->select('title, articleid, content, defaultpic, updatetime, hits')
 					->where('classid', $classid)
+					->where('deleted !=', 1)
 					->limit($section, $startwith)
 					->order_by('articleid', 'DESC')
 					->get();
-
-				
-				
-
+					
 				$data['data']=$articlefound->result();
 				//查询到的记录数据
 
@@ -177,7 +170,7 @@
 				$parrentname=$parrent->result();
 				//该classid对应的parrent的记录数据，用于下面的navlink生成链接
 
-				$data['navlink']='<p><a href="'.base_url('article/category/').$parrentname[0]->classid.'">'.$parrentname[0]->classname.'</a> > '.'<a href="'.base_url('article/category/').$childrenname[0]->classid.'">'.$childrenname[0]->classname.'</a></p>';
+				$data['navlink']='<p>当前位置： <a href="'.base_url('article/category/').$parrentname[0]->classid.'">'.$parrentname[0]->classname.'</a> > '.'<a href="'.base_url('article/category/').$childrenname[0]->classid.'">'.$childrenname[0]->classname.'</a></p>';
 				//显示在导航栏下方的快速链接，显示格式为 根节点名称 > 子节点名称，均为超链接可以点击
 
 				return $data;

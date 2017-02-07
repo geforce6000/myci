@@ -11,9 +11,9 @@
 		  //检查数据是否存在于user表中，如果存在，根据用户等级显示相应的页面
 		  //如果不存在，提示错误信息
 
-			$this->load->model('User_model','user');
+			$this->load->model('Admin_model','admin');
 
-			$data=$this->user->login($this->input->post('username'),md5($this->input->post('userpw')));
+			$data=$this->admin->login($this->input->post('username'),md5($this->input->post('userpw')));
 
 			if($data['found'] == 1) //==1表示查到一条记录，表明该用户存在且用户名和密码均正确
 
@@ -25,7 +25,13 @@
 
 				{ //将来要替换成超管视图
 
-					echo "欢迎你，超级管理员 ".$data[0]->name;
+					$this->session->set_userdata('adminname', $data[0]->name);
+
+					$this->load->view('adminheader');
+
+					$this->load->view('adminarticle');
+
+					$this->load->view('footer');
 
 				}
 
@@ -43,7 +49,7 @@
 
 			{ //没有查到相应数据，显示错误信息
 
-				echo "错误的用户名/密码！";
+				echo "无效的用户名/密码！";
 
 			}
 

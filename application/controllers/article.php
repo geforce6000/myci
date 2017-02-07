@@ -37,7 +37,7 @@
 
 			$this->load->view('nav',$res);
 
-			$this->load->view('article'); //把数据传递给视图
+			$this->load->view('articlebyid'); //把数据传递给视图
 
 			$this->load->view('footer');
 		
@@ -128,7 +128,7 @@
 				//调用Article_model的searchbykey方法，把接收的数据$keyword和$startwith(搜索偏移位置)传过去，
 				//用$data接收查询到的数据，$data是一个对象
 				
-				$this->load->model('Pagination_model', 'pagi');
+				$this->load->model('My_model', 'pagi');
 				//把分页类的配置代码做成一个分页模型，便于重复调用
 
 				$paginationinfo = array(
@@ -204,13 +204,13 @@
 
 			{
 
-				$startwith=$this->uri->segment(4);
+				$startwith=intval($this->uri->segment(4));
 
 			}
 
 			$data=$this->article->getarticlebyclass($articleclass, $startwith, 20); //调用Article_model模型中的getarticlebyclass方法
 
-			$this->load->model('Pagination_model', 'pagi');
+			$this->load->model('My_model', 'pagi');
 
 			$paginationinfo = array(
 					'url' => 'article/category/',
@@ -218,6 +218,8 @@
 					'per_page' => 20,
 					'total_rows' => $data['total_rows']);
 			//配置分页类所需要的4个参数			
+
+			$res['links'] = $this->pagi->mypagination($paginationinfo);
 
 			if($data['total_rows']==0) 
 
@@ -237,7 +239,7 @@
 
 				$res['navlink']=$data['navlink'];
 
-				$res['links'] = $this->pagi->mypagination($paginationinfo);
+				
 
 			}
 
@@ -272,7 +274,61 @@
 			echo 'affected_rows: '.$this->db->affected_rows();
 		
 		}
+
+		public function email()
+
+		{ //邮件类测试成功，不过如果要用的话，需要申请一个新的工作邮箱，现在这个用的是自己邮箱
+		  //如果将来要用，也可以像分页类那样做成自己的模型方法来调用，估计需要传递的参数包括
+		  //发件人，收件人，主题，内容这4项
+			
+			$this->load->library('email');
+
+			$config['protocol'] = 'smtp';
+
+			$config['smtp_host'] = 'ssl://smtp.qq.com';
+
+			$config['smtp_user'] = 'geforce6000@qq.com'; 
+			//一般是发件邮箱
+
+			$config['smtp_pass'] = 'mrhecziuqwavbhab';
+			//去QQ邮箱设置开启smtp后，QQ邮箱会给一个16位的第三方客户端密码填在这里
+			
+			$config['smtp_port'] = 465;
+			
+			$config['smtp_timeout'] = 30;
+			
+			$config['mailtype'] = 'text';
+			
+			$config['charset'] = 'utf-8';
+			
+			$config['wordwrap'] = TRUE;
+			
+			$this->email->initialize($config);
+			
+			$this->email->set_newline("\r\n");
+			
+			$config['crlf'] = "\r\n";
+			
+			$this->email->from('geforce6000@qq.com', '杨威利'); 
+			//填在邮件里的发件人邮箱和发件人名字
+			
+			$this->email->to('geforce6000@qq.com'); 
+			//收件人邮箱
+
+			$this->email->subject('Email Test'); 
+			//邮件主题
+			
+			$this->email->message('Testing the email class.'); 
+			//邮件内容
+			
+			$this->email->send(); 
+			//发送！
+			
+			return $this->email->print_debugger();
+
+		}
 */
+
 	}
 
 ?>

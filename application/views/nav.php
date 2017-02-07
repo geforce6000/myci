@@ -29,13 +29,13 @@
 
 					<li class="has-dropdown">
 
-						<a href="<?php echo site_url('article/category/').$row->classid?>"><?=$row->classname?></a>
+						<a href="<?php echo site_url('article/category/').$row->classid.'/0';?>"><?=$row->classname?></a>
 
 						<ul class="dropdown">
 
 							<?php foreach ($children[$row->classid] as $cname): ?>
 
-								<li><a href="<?php echo site_url('article/category/').$cname->classid?>"><?=$cname->classname?></a></li>
+								<li><a href="<?php echo site_url('article/category/').$cname->classid.'/0';?>"><?=$cname->classname?></a></li>
 
 							<?php endforeach; ?>
 

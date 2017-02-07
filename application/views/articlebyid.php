@@ -1,7 +1,7 @@
 
 <!-- 单一文章显示模板，显示article控制器查询到的文章数据，如果没有查到，则显示'没有查到数据' -->
 
-<div class="row">
+<div class="row" id="mainframe">
 
 <?php
 

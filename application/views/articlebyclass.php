@@ -5,23 +5,49 @@
 
 <?php
 
+	include('\include\functions.php');
+
 	if ($found)
 
 	{
 
-		echo $navlink;
-
-		//echo '<p><a href="'.base_url('article/category/').$parrentname->classid.'">'.$parrentname->classname.'</a> > '.'<a href="'.base_url('article/category/').$childrenname->classid.'">'.$childrenname->classname.'</a></p>';
+		echo "$navlink<hr>";
 
 		foreach ($data as $row)
 
 		{
 
-			//$redtitle=str_replace($keyword, "<font color='#FF0000'>".$keyword."</font>", $row->title);
-			//
-			//echo $redtitle;
+			echo "<h4><a href=".base_url('article/id/').$row->articleid.'>'.$row->title."</h4>";
 
-			echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$row->title.'</a></p>';
+			echo "<div class=\"medium-2 columns categorylist\">";
+
+			if (substr($row->defaultpic,-3) == "jpg")
+
+			{
+
+				echo "<img class=\"categorylistthumb\" src=\"".$row->defaultpic."\" width=\"140\">";
+
+			}
+
+			else
+
+			{
+
+				echo "<img class=\"categorylistthumb\" src=\"\image\logo-thumb.gif\" width=\"140\">";
+
+			}
+
+			echo "</div></a>";
+
+			echo "<div class=\"medium-10 columns\">";
+
+			$stripcontont=strip_tags($row->content);
+
+			$stripcontont=utf8Substr($stripcontont,0,200);
+
+			echo "<p>$stripcontont...</p></p>$row->updatetime</p></div>";
+
+			echo '<hr>';
 		
 		//逐条显示文件链接
 

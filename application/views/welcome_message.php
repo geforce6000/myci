@@ -2,21 +2,21 @@
 
 <div id="slidebox" class="slideBox">
 
-  <ul class="items">
+  	<ul class="items">
 
-  	<!--图片大小1000*450正好填满-->
+	  	<!--图片大小1000*300正好填满-->
 
-    <li><a href="http://www.jq22.com/" title="这里是测试标题一"><img src="./image/1.png"></a></li>
+	    <li><a href="http://www.jq22.com/" title="这里是测试标题一"><img src="./image/1.png"></a></li>
 
-    <li><a href="http://www.jq22.com/" title="这里是测试标题二"><img src="./image/2.png"></a></li>
+	    <li><a href="http://www.jq22.com/" title="这里是测试标题二"><img src="./image/2.png"></a></li>
 
-    <li><a href="http://www.jq22.com/" title="这里是测试标题三"><img src="./image/3.png"></a></li>
+	    <li><a href="http://www.jq22.com/" title="这里是测试标题三"><img src="./image/3.png"></a></li>
 
-    <li><a href="http://www.jq22.com/" title="这里是测试标题四"><img src="./image/4.png"></a></li>
+	    <li><a href="http://www.jq22.com/" title="这里是测试标题四"><img src="./image/4.png"></a></li>
 
-    <li><a href="http://www.jq22.com/" title="这里是测试标题五"><img src="./image/5.png"></a></li>
+	    <li><a href="http://www.jq22.com/" title="这里是测试标题五"><img src="./image/5.png"></a></li>
 
-  </ul>
+  	</ul>
 
 </div>
 
@@ -74,7 +74,7 @@
 
 	<!--p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p-->
 
-</div>
+	</div>
 
 </div>
 
