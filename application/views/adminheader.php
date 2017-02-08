@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Foundation 实例</title>
+  <title>后台管理</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
@@ -11,8 +11,5 @@
   <!-- 自制的css样式表 -->
   <link rel="stylesheet" href="\css\article.css">
   <script>
-	$(document).ready(function() {
-    	$(document).foundation();
-	})
 </script>
 </head>

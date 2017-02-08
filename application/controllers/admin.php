@@ -19,6 +19,17 @@
 
 			{
 
+				$this->load->model('Article_model', 'article');
+
+				$res['parrentcategory'] = $this->article->getCategorybyParrentid();
+				//调取articleclass根节点数据
+				
+				$res['articlelist'] = $this->article->getArticlebyClass(0);
+				//只传一个0表示不分类别调取所有文章，倒序排列，数量10篇
+
+				$res['adminname'] = $data[0]->name;
+				//管理员名字
+
 				if ($data[0]->level == 0)
 				//level==0表明是超级管理员，具备全部权限
 				//目前考虑权限包括1修改所有用户信息，2发布、修改、删除、置顶文章，3审核普通管理员发的文，4修改文章分类表->会间接影响导航条
@@ -27,7 +38,7 @@
 
 					$this->session->set_userdata('adminname', $data[0]->name);
 
-					$this->load->view('adminheader');
+					$this->load->view('adminheader', $res);
 
 					$this->load->view('adminarticle');
 

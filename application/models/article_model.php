@@ -4,7 +4,7 @@
 
 	{
 
-		public function getarticlebyid ($id)
+		public function getArticlebyId ($id)
 
 		{ //根据传入的$id查询一篇文章返回
 
@@ -28,7 +28,7 @@
 		}
 
 */
-		public function searchbykey($key, $startwith)
+		public function searchArticlebyKey($key, $startwith, $limit=20)
 
 		{ //根据传入的$key从article数据表中查询符合条件的数据，$startwith是传入偏移量，返回记录按articleid倒序排列
 
@@ -46,7 +46,7 @@
 				->order_by('articleid','DESC')
 				->where('deleted !=', 1)
 				->like('title', $key)
-				->limit(20, $startwith)
+				->limit($limit, $startwith)
 				->get();
 			//这一次是查询20条记录
 
@@ -58,10 +58,24 @@
 
 		}
 
-		public function getarticlebyclass($classid, $startwith=0, $section=10)
+		public function getArticlebyClass($classid, $startwith=0, $section=10)
 		
 		{ //根据文章的classid(类别号)获取相关类别的全部文章，返回结果按articleid倒序排列
 		  //$classid是类别号，$section是一节文章数量（用于分页），默认10，$startwith是分页的偏移量，默认0
+		  
+			if ($classid == 0)
+
+			{ //如果传入$classid为0，则设定范围是取所有文章，按articleid倒序排列返回
+
+				$data = $this->db->from('article')
+							->select('articleid, title, deleted')
+							->order_by('articleid', 'DESC')
+							->limit($section, $startwith)
+							->get();
+
+				return $data->result();
+
+			}
 
 			$parrentid=$this->db->from('articleclass')
 						->where('classid', $classid)
@@ -176,6 +190,20 @@
 				return $data;
 
 			}
+
+		}
+
+		public function getCategorybyParrentid ($parrentid=0)
+
+		{ //根据传入的$parrentid来调取子category，不传参默认调取根节点数据
+
+			$categorylist = $this->db->from('articleclass')
+				->select('classid, classname')
+				->where('parrentid', $parrentid)
+				->order_by('classid', 'ASC')
+				->get();
+
+			return $categorylist->result();
 
 		}
 

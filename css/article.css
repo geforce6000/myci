@@ -31,3 +31,19 @@ a {
 	margin: auto;
 }
 
+.admincell {
+	text-align: right;
+	padding: 7px 0;
+}
+
+.side-nav {
+
+}
+
+.headline {
+	margin-top: 18px;
+}
+
+.titleintable {
+	column-width: 300px;
+}

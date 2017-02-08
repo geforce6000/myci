@@ -10,7 +10,7 @@
 
 			$this->load->model('Article_model','article'); //调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
 
-			$data=$this->article->getarticlebyid($this->uri->segment(3)); //调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
+			$data=$this->article->getArticlebyId($this->uri->segment(3)); //调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
 
 			$this->load->model('Nav_model', 'nav');
 			//调用Nav_model模型，起别名nav
@@ -124,7 +124,7 @@
 
 				$startwith=intval($this->uri->segment(4));
 
-				$data=$this->article->searchbykey($keyword, $startwith); 
+				$data=$this->article->searchArticlebyKey($keyword, $startwith); 
 				//调用Article_model的searchbykey方法，把接收的数据$keyword和$startwith(搜索偏移位置)传过去，
 				//用$data接收查询到的数据，$data是一个对象
 				
@@ -208,7 +208,7 @@
 
 			}
 
-			$data=$this->article->getarticlebyclass($articleclass, $startwith, 20); //调用Article_model模型中的getarticlebyclass方法
+			$data=$this->article->getArticlebyClass($articleclass, $startwith, 20); //调用Article_model模型中的getarticlebyclass方法
 
 			$this->load->model('My_model', 'pagi');
 
@@ -328,6 +328,57 @@
 
 		}
 */
+
+		public function showChildCategory ()
+
+		{
+
+			$parrentcategory = $this->input->post('id');
+
+			//$parrentcategory = $this->uri->segment(3);
+
+			$this->load->model('Article_model', 'article');
+
+			$data = $this->article->getCategorybyParrentid($parrentcategory);
+
+			foreach ($data as $row)
+
+			{
+				echo "<option value=\"".$row->classid."\">".$row->classname."</option>";
+			}
+		}
+
+		public function showArticleinTable ()
+
+		{
+
+			$childcategory = $this->input->post('id');
+
+			$this->load->model('Article_model', 'article');
+
+			$data = $this->article->getArticlebyClass($childcategory);
+			
+			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+
+			foreach ($data['data'] as $row)
+
+			{
+
+				echo "<tr>";
+
+				echo "<td>$row->articleid</td>";
+
+                echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+
+                echo "<td>编辑</td>";
+
+                echo "<td>通过</td>";
+
+                echo "<td>删除</td><tr>";
+			
+			}
+
+		}
 
 	}
 
