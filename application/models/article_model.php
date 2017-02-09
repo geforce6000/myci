@@ -207,6 +207,20 @@
 
 		}
 
+		public function getParrentidbyChild ($childid)
+
+		{ //根据传入的$childid来查其父id
+
+			$parrent = $this->db->from('articleclass')
+						->select('classid, classname, parrentid')
+						->where('classid', $childid)
+						->limit(1)
+						->get();
+
+			return $parrent->result();
+
+		}
+
 	}
 
 ?>

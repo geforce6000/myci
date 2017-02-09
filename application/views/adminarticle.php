@@ -27,7 +27,7 @@
                 
                 <h1 class="headline">文章管理</h1>
 
-                    <div class="row" data-equalizer>
+                <div class="row" data-equalizer>
 
                     <div class="row collapse">
 
@@ -62,7 +62,12 @@
                         <div class="small-3 columns">
 
                             <select id="childrencategory" name="childcategory" onchange="changearticleintable(this.value)">
+                                
+                                <?php foreach($childrencategory as $row):?>
 
+                                      <option value="<?=$row->classid?>"><?=$row->classname?></option>
+
+                                <? endforeach; ?>
 
                             </select>
 
@@ -92,9 +97,7 @@
 
                                 <th>删除</th>
 
-                            </tr>
-
-                            
+                            </tr>                         
 
                             <?php 
 
@@ -108,7 +111,7 @@
 
                                     echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
 
-                                    echo "<td>编辑</td>";
+                                    echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
 
                                     echo "<td>通过</td>";
 
@@ -119,8 +122,6 @@
                                 }
 
                             ?>
-
-                            
 
                         </table>
                   

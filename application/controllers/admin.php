@@ -24,6 +24,8 @@
 				$res['parrentcategory'] = $this->article->getCategorybyParrentid();
 				//调取articleclass根节点数据
 				
+				$res['childrencategory'] = $this->article->getCategorybyParrentid(1);
+				
 				$res['articlelist'] = $this->article->getArticlebyClass(0);
 				//只传一个0表示不分类别调取所有文章，倒序排列，数量10篇
 

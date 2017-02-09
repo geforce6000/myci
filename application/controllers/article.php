@@ -331,7 +331,7 @@
 
 		public function showChildCategory ()
 
-		{
+		{ 
 
 			$parrentcategory = $this->input->post('id');
 
@@ -370,13 +370,43 @@
 
                 echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
 
-                echo "<td>编辑</td>";
+                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
 
                 echo "<td>通过</td>";
 
                 echo "<td>删除</td><tr>";
 			
 			}
+
+		}
+
+		public function articleEdit ()
+
+		{
+
+			$this->load->helper('url');
+
+			$this->load->model('Article_model','article'); 
+			//调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
+
+			$data=$this->article->getArticlebyId($this->uri->segment(3)); 
+			//调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
+			//$this->uri->segment(3)是传入的文章articleid
+
+			$res['data']=$data[0]; 
+
+			$parrentid=$this->article->getParrentidbyChild($res['data']->classid);
+			//获取文章class的父classid
+			
+			$res['parrentid']=$parrentid[0]->parrentid;
+
+			$res['parrentcategory']=$this->article->getCategorybyParrentid();
+			
+			$res['childrencategory']=$this->article->getCategorybyParrentid($res['parrentid']);
+
+			$this->load->view('articleedit', $res);
+
+
 
 		}
 
