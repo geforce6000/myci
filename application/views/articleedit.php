@@ -38,34 +38,34 @@
 	</script>
 </head>
 <body>
-	<form name="example" method="post" action="article/articlepost/">
+	<form name="articleedit" method="post" action="<?php echo site_url('article/articlePost')?>">
         <div class="row collapse">
 	        <div class="small-12">文章分类</div>
-                <div class="small-1 columns">
-                    <span class="prefix">一级目录</span>
-                    <!--label for="parrentcategory" class="inline">一级目录</label-->
-                </div>
-                <div class="small-3 columns">
-                    <select name="parrentcategory" onchange="changechildren(this.value)">
-                        <?php foreach($parrentcategory as $row):?>
-                            <option value="<?=$row->classid?>" <?php if($row->classid==$parrentid) {echo "selected";} ?>><?=$row->classname?></option>
-                        <? endforeach; ?>
-                    </select>
-                </div>
-                <div class="small-1 columns">
-                    <span class="prefix">二级目录</span>
-                    <!--label for="childrencategory" class="inline">二级目录</label-->
-                </div>
-                <div class="small-3 columns">
-                    <select id="childrencategory" name="childrencategory">
-                        <?php foreach($childrencategory as $row):?>
-                            <option value="<?=$row->classid?>" <?php if($row->classid==$data->classid) {echo "selected";} ?>><?=$row->classname?></option>
-                        <? endforeach; ?>
-                    </select>
-                </div>
+            <div class="small-1 columns">
+                <span class="prefix">一级目录</span>
+                <!--label for="parrentcategory" class="inline">一级目录</label-->
+            </div>
+            <div class="small-3 columns">
+                <select name="parrentcategory" onchange="changechildren(this.value)">
+                    <?php foreach($parrentcategory as $row):?>
+                        <option value="<?=$row->classid?>" <?php if($row->classid==$parrentid) {echo "selected";} ?>><?=$row->classname?></option>
+                    <? endforeach; ?>
+                </select>
+            </div>
+            <div class="small-1 columns">
+                <span class="prefix">二级目录</span>
+                <!--label for="childrencategory" class="inline">二级目录</label-->
+            </div>
+            <div class="small-3 columns">
+                <select id="childrencategory" name="childrencategory">
+                    <?php foreach($childrencategory as $row):?>
+                        <option value="<?=$row->classid?>" <?php if($row->classid==$data->classid) {echo "selected";} ?>><?=$row->classname?></option>
+                    <? endforeach; ?>
+                </select>
+            </div>
             <div class="small-12 columns left">
                 标题
-                <input type="text" value="<?php echo $data->title; ?>">
+                <input name="articletitle" type="text" value="<?php echo $data->title; ?>">
             </div>
             <div class="small-12 columns left">
                 正文
@@ -73,9 +73,9 @@
 		        <br/>
 		        <input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
 	        </div>
-	    </form>
-    </div>
-</div>
+	    </div>
+    </form>
+</body>
 
 <script>
 

@@ -80,8 +80,8 @@
 			$parrentid=$this->db->from('articleclass')
 						->where('classid', $classid)
 						->get();
-			//获取传入$classid对应的记录
-
+			//获取传入$classid对应的父ID
+			
 			$getparrentid=$parrentid->result();
 
 			if ($getparrentid[0]->parrentid == 0) 

@@ -10,7 +10,7 @@
 
 			$this->load->model('Article_model','article'); //调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
 
-			$data=$this->article->getArticlebyId($this->uri->segment(3)); //调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
+			$data=$this->article->getArticlebyId($this->uri->segment(3)); //调用模型中的getArticlebyId方法，传递一个参数，返回结果是一个对象，不是数组
 
 			$this->load->model('Nav_model', 'nav');
 			//调用Nav_model模型，起别名nav
@@ -388,6 +388,10 @@
 
 			$this->load->model('Article_model','article'); 
 			//调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
+			
+			if ($this->uri->segment(3) <> NUll)
+
+			{
 
 			$data=$this->article->getArticlebyId($this->uri->segment(3)); 
 			//调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
@@ -406,10 +410,29 @@
 
 			$this->load->view('articleedit', $res);
 
+			}
 
+			else
+
+			{
+
+				echo "newarticle click!";
+			
+			}
 
 		}
 
+		public function articlePost ()
+
+		{
+
+			//echo "articlePost called!";
+
+			$content = $this->input->post('content1');
+
+			echo $content;
+
+		}
 	}
 
 ?>

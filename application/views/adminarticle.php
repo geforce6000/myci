@@ -73,59 +73,64 @@
 
                         </div>
 
-                        <div class="small-4 columns">
+                        <div class="small-2 columns">
+
+                            <button class="tiny right" id="newarticle" name="newarticle" onclick="newarticle()">新文章</button>
+                            <!--新建文章-->
 
                         </div>
 
-                        </div>
+                        <div class="small-2 columns"></div>
+
+                    </div>
           
-                    </div>
+                </div>
 
-                    <div>
+                <div>
 
-                        <table class="responsive" id="articleintable">
+                    <table class="responsive" id="articleintable">
 
-                            <tr>
+                        <tr>
 
-                                <th>序号</th>
+                            <th>序号</th>
 
-                                <th>标题</th>
+                            <th>标题</th>
 
-                                <th>编辑</th>
+                            <th>编辑</th>
 
-                                <th>通过</th>
+                            <th>通过</th>
 
-                                <th>删除</th>
+                            <th>删除</th>
 
-                            </tr>                         
+                        </tr>                         
 
-                            <?php 
+                        <?php 
 
-                                foreach ($articlelist as $row)
+                            foreach ($articlelist as $row)
 
-                                {
+                            {
 
-                                    echo "<tr>";
+                                echo "<tr>";
 
-                                    echo "<td>$row->articleid</td>";
+                                echo "<td>$row->articleid</td>";
 
-                                    echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+                                echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
 
-                                    echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
+                                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
 
-                                    echo "<td>通过</td>";
+                                echo "<td>通过</td>";
 
-                                    echo "<td>删除</td>";
+                                echo "<td>删除</td>";
 
-                                    echo "</tr>";
+                                echo "</tr>";
 
-                                }
+                            }
 
-                            ?>
+                        ?>
 
-                        </table>
-                  
-                    </div>
+                    </table>
+              
+                </div>
 
             </div>
 
@@ -153,8 +158,6 @@
 
             {
 
-                //alert(data);
-
             $("#childrencategory").html(data);
 
             }
@@ -173,13 +176,19 @@
 
             {
 
-                //alert(data);
-
             $("#articleintable").html(data);
 
             }
 
           )
+
+        }
+
+        function newarticle()
+
+        {
+
+            window.open("/article/articleedit");
 
         }
 
