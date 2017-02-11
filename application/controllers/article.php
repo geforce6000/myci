@@ -426,8 +426,6 @@
 
 		{
 
-			//echo "articlePost called!";
-
 			$content = $this->input->post('content1');
 
 			echo $content;
