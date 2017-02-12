@@ -31,10 +31,10 @@
 
                     <div class="row collapse">
 
-                        <div class="small-1 columns">
+                        <div class="small-2 columns">
 
-                            <span class="prefix">一级目录</span>
-                            <!--label for="parrentcategory" class="inline">一级目录</label-->
+                            <!--span class="prefix">一级目录</span-->
+                            <label for="parrentcategory" class="inline right">一级目录：</label>
 
                         </div>
 
@@ -52,16 +52,16 @@
 
                         </div>
 
-                        <div class="small-1 columns">
+                        <div class="small-2 columns">
 
-                            <span class="prefix">二级目录</span>
-                            <!--label for="childrencategory" class="inline">二级目录</label-->
+                            <!--span class="prefix">二级目录</span-->
+                            <label for="childrencategory" class="inline right">二级目录：</label>
 
                         </div>
 
                         <div class="small-3 columns">
 
-                            <select id="childrencategory" name="childcategory" onchange="changearticleintable(this.value)">
+                            <select id="childrencategory" name="childrencategory" onchange="changearticleintable(this.value)">
                                 
                                 <?php foreach($childrencategory as $row):?>
 
@@ -80,13 +80,19 @@
 
                         </div>
 
-                        <div class="small-2 columns"></div>
-
                     </div>
           
                 </div>
 
                 <div>
+
+                <ul id = "buttontopage" class="button-group even-2">
+
+                        <li><button class="tiny" id="pageup" name="pageup" onclick="pageup()">上一页</button></li>
+
+                        <li><button class="tiny" id="pagedown" name="pagedown" onclick="pagedown()">下一页</button></li>
+
+                    </ul>
 
                     <table class="responsive" id="articleintable">
 
@@ -104,7 +110,7 @@
 
                         </tr>                         
 
-                        <?php 
+                        <?php
 
                             foreach ($articlelist as $row)
 
@@ -114,7 +120,7 @@
 
                                 echo "<td>$row->articleid</td>";
 
-                                echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+                                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
 
                                 echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
 
@@ -129,6 +135,8 @@
                         ?>
 
                     </table>
+
+                    
               
                 </div>
 
@@ -166,11 +174,11 @@
 
         }
 
-        function changearticleintable(childcategory) 
+        function changearticleintable(childrencategory) 
 
         {
 
-            $.post("/article/showArticleinTable", { id : childcategory } ,
+            $.post("/article/showArticleinTable", { id : childrencategory } ,
 
                 function(data,status)
 
@@ -181,6 +189,40 @@
             }
 
           )
+
+        }
+
+        function pageup()
+
+        {
+            $.post("/article/pageup",1,
+
+                function(data, status)
+
+            {
+
+            $("#articleintable").html(data);
+
+            }
+
+            )
+
+        }
+
+        function pagedown()
+
+        {
+            $.post("/article/pagedown",1,
+
+                function(data, status)
+
+            {
+
+            $("#articleintable").html(data);
+
+            }
+
+            )
 
         }
 

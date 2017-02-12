@@ -18,6 +18,10 @@
 	margin-top: 18px;
 }
 
+#buttontopage {
+	vertical-align: bottom;
+}
+
 a {
 	color: black;
 }
@@ -49,3 +53,4 @@ a {
 .titleintable {
 	column-width: 300px;
 }
+

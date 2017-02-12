@@ -156,6 +156,8 @@
 
 				$data['total_rows']=$this->db->affected_rows();
 				//查询到的记录总条数
+				
+				$this->session->set_userdata('sum', $data['total_rows']);
 
 				$articlefound=$this->db->from('article')
 					->select('title, articleid, content, defaultpic, updatetime, hits')
@@ -217,7 +219,31 @@
 						->limit(1)
 						->get();
 
+			$sum = $this->db->from('article')
+						->where('classid', $childid)
+						->get();
+
+			$this->session->set_userdata('sum', $this->db->affected_rows());
+			//把本次查询到的记录总数存到session中
+
 			return $parrent->result();
+
+		}
+
+		public function getArticleforAdmin ($classid, $startwith=0)
+
+		{
+
+			$articlefound=$this->db->from('article')
+				->select('title, articleid, deleted, passed')
+				->where('classid', $classid)
+				->limit(10, $startwith)
+				->order_by('articleid', 'DESC')
+				->get();
+				
+			$data['data']=$articlefound->result();
+
+			return $data;
 
 		}
 

@@ -180,7 +180,7 @@
 
 		public function category ()
 
-		{ //根据文章的classid来显示相关分类的文章，还没做分页
+		{ //根据文章的classid来显示相关分类的文章，一页20篇，带分页
 
 			$this->load->model('Article_model', 'article'); //调用Article_model模型，用article做别名
 
@@ -341,6 +341,8 @@
 
 			$data = $this->article->getCategorybyParrentid($parrentcategory);
 
+			$this->session->set_userdata('parrentcategory', $parrentcategory);
+
 			foreach ($data as $row)
 
 			{
@@ -352,11 +354,13 @@
 
 		{
 
-			$childcategory = $this->input->post('id');
+			$childrencategory = $this->input->post('id');
 
 			$this->load->model('Article_model', 'article');
 
-			$data = $this->article->getArticlebyClass($childcategory);
+			$data = $this->article->getArticleforAdmin($childrencategory);
+
+			$this->session->set_userdata('childrencategory', $childrencategory);
 			
 			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
 
@@ -368,7 +372,7 @@
 
 				echo "<td>$row->articleid</td>";
 
-                echo "<td width=\"500\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
 
                 echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
 
@@ -431,6 +435,82 @@
 			echo $content;
 
 		}
+
+		public function pageup ()
+
+		{
+
+			$this->load->model('Article_model', 'article');	
+
+			if ($this->session->startwith > 0 )
+
+			{
+			$this->session->set_userdata('startwith', $this->session->startwith-10);
+			}
+
+			$data = $this->article->getArticleforAdmin($this->session->childrencategory, $this->session->startwith);
+
+			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+
+			foreach ($data['data'] as $row)
+
+			{
+
+				echo "<tr>";
+
+				echo "<td>$row->articleid</td>";
+
+                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+
+                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
+
+                echo "<td>通过</td>";
+
+                echo "<td>删除</td><tr>";
+			
+			}
+
+		}
+
+		public function pagedown ()
+
+		{
+
+
+			$this->load->model('Article_model', 'article');
+
+			$recordleft = $this->session->sum - $this->session->startwith;
+
+			if ($recordleft > 10 )
+
+			{
+			$this->session->set_userdata('startwith', $this->session->startwith+10);
+			}
+
+			$data = $this->article->getArticleforAdmin($this->session->childrencategory, $this->session->startwith);
+
+			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+
+			foreach ($data['data'] as $row)
+
+			{
+
+				echo "<tr>";
+
+				echo "<td>$row->articleid</td>";
+
+                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+
+                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
+
+                echo "<td>通过</td>";
+
+                echo "<td>删除</td><tr>";
+				
+			}
+			
+		}
+
 	}
 
 ?>

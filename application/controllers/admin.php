@@ -38,7 +38,15 @@
 
 				{ //将来要替换成超管视图
 
-					$this->session->set_userdata('adminname', $data[0]->name);
+					//$this->session->set_userdata('adminname', $data[0]->name);
+
+					$this->session->set_userdata('parrentcategory', 1);
+					//这个值是表示parrentcategory列表项的值，用于翻页
+
+					$this->session->set_userdata('childrencategory', 2);
+					//同上一行
+
+					$this->session->set_userdata('startwith', 0);
 
 					$this->load->view('adminheader', $res);
 
