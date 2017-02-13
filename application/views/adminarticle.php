@@ -33,7 +33,6 @@
 
                         <div class="small-2 columns">
 
-                            <!--span class="prefix">一级目录</span-->
                             <label for="parrentcategory" class="inline right">一级目录：</label>
 
                         </div>
@@ -54,7 +53,6 @@
 
                         <div class="small-2 columns">
 
-                            <!--span class="prefix">二级目录</span-->
                             <label for="childrencategory" class="inline right">二级目录：</label>
 
                         </div>
@@ -86,7 +84,7 @@
 
                 <div>
 
-                <ul id = "buttontopage" class="button-group even-2">
+                    <ul id = "buttontopage" class="button-group even-2">
 
                         <li><button class="tiny" id="pageup" name="pageup" onclick="pageup()">上一页</button></li>
 
@@ -96,7 +94,7 @@
 
                     <table class="responsive" id="articleintable">
 
-                        <tr>
+                        <!--tr>
 
                             <th>序号</th>
 
@@ -111,7 +109,7 @@
                         </tr>                         
 
                         <?php
-
+/*
                             foreach ($articlelist as $row)
 
                             {
@@ -131,8 +129,10 @@
                                 echo "</tr>";
 
                             }
+*/
+                        ?> -->
 
-                        ?>
+                        <?php echo $articlelist; ?>
 
                     </table>
 
@@ -153,12 +153,14 @@
         {
 
             $(document).foundation();
+            //fundation初始化
 
         })
 
         function changechildren(parrentcategory) 
 
-        {
+        { //parrentcategory的onchange函数，使用ajax post方式取回childrencategory的数据并显示
+
 
             $.post("/article/showChildCategory", { id : parrentcategory } ,
 
@@ -167,6 +169,10 @@
             {
 
             $("#childrencategory").html(data);
+            //显示在childrencategory中的取回数据
+
+            changearticleintable($("#childrencategory").val());
+            //同时改变table中的数据，传递的值是childrencategory第一项的值
 
             }
 
@@ -233,6 +239,23 @@
             window.open("/article/articleedit");
 
         }
+
+        function passed(articleid)
+
+        {
+
+            alert(articleid+"clicked!");
+
+        }
+
+        function deleted(articleid)
+
+        {
+
+            alert(articleid+"clicked!");
+            
+        }
+
 
     </script>
 

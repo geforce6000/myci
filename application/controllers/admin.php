@@ -25,8 +25,10 @@
 				//调取articleclass根节点数据
 				
 				$res['childrencategory'] = $this->article->getCategorybyParrentid(1);
+
+				//$res['articlelist'] = $this->article->getArticleforAdmin(2,0);
 				
-				$res['articlelist'] = $this->article->getArticlebyClass(0);
+				$res['articlelist'] = $this->article->getArticleforAdmin(2);
 				//只传一个0表示不分类别调取所有文章，倒序排列，数量10篇
 
 				$res['adminname'] = $data[0]->name;
@@ -36,7 +38,7 @@
 				//level==0表明是超级管理员，具备全部权限
 				//目前考虑权限包括1修改所有用户信息，2发布、修改、删除、置顶文章，3审核普通管理员发的文，4修改文章分类表->会间接影响导航条
 
-				{ //将来要替换成超管视图
+				{
 
 					//$this->session->set_userdata('adminname', $data[0]->name);
 
@@ -47,6 +49,7 @@
 					//同上一行
 
 					$this->session->set_userdata('startwith', 0);
+					//设定翻页时的偏移量，初始值为0
 
 					$this->load->view('adminheader', $res);
 

@@ -73,44 +73,44 @@
 
 		{ //根据搜索关键字查询记录返回articlefound视图，每20条视图做一次分页
 
-			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
+		$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
 
-			$this->load->model('Nav_model', 'nav');
-			//调用Nav_model模型，起别名nav
+		$this->load->model('Nav_model', 'nav');
+		//调用Nav_model模型，起别名nav
 
-			$res=$this->nav->nav();
+		$res=$this->nav->nav();
 
-			if(($this->input->post('forsearching') == NULL) and ($this->uri->segment(4) == NULL))
+		if(($this->input->post('forsearching') == NULL) and ($this->uri->segment(4) == NULL))
+
+		{
+
+		//如果$this->input->post('forsearching')和$this->uri->segment(4)均为NULL值，
+		//表明搜索框没有输入内容，segment(4)段也不存在，避免了不输入内容就点击搜索按钮导致搜索出全部文章
+		//从而导致分类页的混乱
+
+			$res['found']=false;
+
+			$this->load->view('header');
+
+			$this->load->view('nav',$res);
+
+			$this->load->view('articlefound'); //把数据传递给视图articlefound
+
+			$this->load->view('footer');
+
+		}
+
+		else
 
 			{
 
-			//如果$this->input->post('forsearching')和$this->uri->segment(4)均为NULL值，
-			//表明搜索框没有输入内容，segment(4)段也不存在，避免了不输入内容就点击搜索按钮导致搜索出全部文章
-			//从而导致分类页的混乱
+				if ($this->input->post('forsearching') !== NULL)
 
-				$res['found']=false;
+					{
 
-				$this->load->view('header');
+						$keyword = $this->input->post('forsearching'); //接收来自header.php搜索框的数据
 
-				$this->load->view('nav',$res);
-
-				$this->load->view('articlefound'); //把数据传递给视图articlefound
-
-				$this->load->view('footer');
-
-			}
-
-			else
-
-				{
-
-					if ($this->input->post('forsearching') !== NULL)
-
-				{
-
-					$keyword = $this->input->post('forsearching'); //接收来自header.php搜索框的数据
-
-				}
+					}
 
 				else
 
@@ -147,7 +147,7 @@
 
 					$res['found']=false;
 					//没有查到数据
-				
+			
 				}
 
 				else
@@ -346,8 +346,11 @@
 			foreach ($data as $row)
 
 			{
+
 				echo "<option value=\"".$row->classid."\">".$row->classname."</option>";
+
 			}
+
 		}
 
 		public function showArticleinTable ()
@@ -361,26 +364,8 @@
 			$data = $this->article->getArticleforAdmin($childrencategory);
 
 			$this->session->set_userdata('childrencategory', $childrencategory);
-			
-			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
 
-			foreach ($data['data'] as $row)
-
-			{
-
-				echo "<tr>";
-
-				echo "<td>$row->articleid</td>";
-
-                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
-
-                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
-
-                echo "<td>通过</td>";
-
-                echo "<td>删除</td><tr>";
-			
-			}
+			echo $data;
 
 		}
 
@@ -445,30 +430,14 @@
 			if ($this->session->startwith > 0 )
 
 			{
-			$this->session->set_userdata('startwith', $this->session->startwith-10);
+
+				$this->session->set_userdata('startwith', $this->session->startwith-10);
+			
 			}
 
 			$data = $this->article->getArticleforAdmin($this->session->childrencategory, $this->session->startwith);
 
-			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
-
-			foreach ($data['data'] as $row)
-
-			{
-
-				echo "<tr>";
-
-				echo "<td>$row->articleid</td>";
-
-                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
-
-                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
-
-                echo "<td>通过</td>";
-
-                echo "<td>删除</td><tr>";
-			
-			}
+			echo $data;
 
 		}
 
@@ -484,31 +453,15 @@
 			if ($recordleft > 10 )
 
 			{
-			$this->session->set_userdata('startwith', $this->session->startwith+10);
+
+				$this->session->set_userdata('startwith', $this->session->startwith+10);
+
 			}
 
 			$data = $this->article->getArticleforAdmin($this->session->childrencategory, $this->session->startwith);
 
-			echo "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+			echo $data;
 
-			foreach ($data['data'] as $row)
-
-			{
-
-				echo "<tr>";
-
-				echo "<td>$row->articleid</td>";
-
-                echo "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
-
-                echo "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</td>";
-
-                echo "<td>通过</td>";
-
-                echo "<td>删除</td><tr>";
-				
-			}
-			
 		}
 
 	}

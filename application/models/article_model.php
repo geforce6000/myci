@@ -235,15 +235,52 @@
 		{
 
 			$articlefound=$this->db->from('article')
-				->select('title, articleid, deleted, passed')
+				->select('articleid, title, deleted, passed')
 				->where('classid', $classid)
 				->limit(10, $startwith)
 				->order_by('articleid', 'DESC')
 				->get();
 				
-			$data['data']=$articlefound->result();
+			$data=$articlefound->result();
 
-			return $data;
+			$articletable = "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+
+			foreach ($data as $row)
+
+			{
+
+				$articletable .= "<tr>";
+
+				$articletable .= "<td>$row->articleid</td>";
+
+				$articletable .= "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+
+				$articletable .= "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</a></td>";
+
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"passed(this.value)\"";
+
+				if($row->passed)
+
+				{
+					$articletable .= "checked = \"checked\"";
+
+				}
+
+				$articletable .= "value=".$row->articleid."></td>";
+
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"deleted(this.value)\"";
+
+				if($row->deleted)
+
+				{
+					$articletable .= "checked = \"checked\"";
+				}
+
+				$articletable .= "value=".$row->articleid."></td>";
+
+			}
+
+			return $articletable;
 
 		}
 

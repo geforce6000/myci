@@ -8,6 +8,7 @@
   <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
   <script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+  <link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
   <!-- 自制的css样式表 -->
   <link rel="stylesheet" href="\css\article.css">
   <script>
