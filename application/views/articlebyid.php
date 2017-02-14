@@ -11,7 +11,7 @@
 
 		echo '<h4 class="text-center">'.$data->title.'</h2>';
 
-		echo '<h5 class="text-center">'.$data->poster.'</h5>';
+		echo '<h5 class="text-center">'.$data->author.'</h5>';
 
 		echo '<h5 class="text-center">'.$data->updatetime.'</h5>';
 

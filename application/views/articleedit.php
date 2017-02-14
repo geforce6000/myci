@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>KindEditor PHP</title>
+	<title>文章编辑</title>
 	<link rel="stylesheet" href="/css/themes/default/default.css" />
 	<link rel="stylesheet" href="/css/plugins/code/prettify.css" />
 	<script charset="utf-8" src="/js/kindeditor.js"></script>
@@ -38,8 +38,30 @@
 	</script>
 </head>
 <body>
+    
 	<form name="articleedit" method="post" action="<?php echo site_url('article/articlePost')?>">
         <div class="row collapse">
+
+            <?php
+
+                if ($data->content == "")
+
+                {
+
+                    echo "<h1>新建文章</h1>";
+
+                }
+
+                else
+
+                {
+
+                    echo "<h1>编辑文章</h1>";
+
+                }
+
+            ?>
+            <hr>
 	        <div class="small-12">文章分类</div>
             <div class="small-1 columns">
                 <span class="prefix">一级目录</span>
@@ -66,6 +88,13 @@
             <div class="small-12 columns left">
                 标题
                 <input name="articletitle" type="text" value="<?php echo $data->title; ?>">
+            </div>
+            <div class="small-12 columns left">
+                作者
+                <input name="author" type="text" value="<?php echo $data->author; ?>">
+            </div>
+            <div class="small-12 columns left hide">
+                <input name="articleid" type="text" value="<?php echo $data->articleid; ?>">
             </div>
             <div class="small-12 columns left">
                 正文

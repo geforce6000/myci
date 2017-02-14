@@ -371,7 +371,7 @@
 
 		public function articleEdit ()
 
-		{
+		{ //根据segment(3)传入的ID编号来编辑一篇文章，或者在segment(3)为NULL的情况下新建一篇文章
 
 			$this->load->helper('url');
 
@@ -382,30 +382,50 @@
 
 			{
 
-			$data=$this->article->getArticlebyId($this->uri->segment(3)); 
-			//调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
-			//$this->uri->segment(3)是传入的文章articleid
+				$data=$this->article->getArticlebyId($this->uri->segment(3)); 
+				//调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
+				//$this->uri->segment(3)是传入的文章articleid
 
-			$res['data']=$data[0]; 
+				$res['data']=$data[0]; 
 
-			$parrentid=$this->article->getParrentidbyChild($res['data']->classid);
-			//获取文章class的父classid
-			
-			$res['parrentid']=$parrentid[0]->parrentid;
+				$parrentid=$this->article->getParrentidbyChild($res['data']->classid);
+				//获取文章class的父classid
+				
+				$res['parrentid']=$parrentid[0]->parrentid;
 
-			$res['parrentcategory']=$this->article->getCategorybyParrentid();
-			
-			$res['childrencategory']=$this->article->getCategorybyParrentid($res['parrentid']);
+				$res['parrentcategory']=$this->article->getCategorybyParrentid();
+				
+				$res['childrencategory']=$this->article->getCategorybyParrentid($res['parrentid']);
 
-			$this->load->view('articleedit', $res);
+				$this->load->view('articleedit', $res);
 
 			}
 
 			else
 
-			{
+			{ //新建一篇文章
 
-				echo "newarticle click!";
+				$data = new StdClass;
+
+				$data->title = "";
+
+				$data->author = "";
+
+				$data->content = "";
+
+				$data->classid = 2;
+
+				$data->articleid = 0;
+
+				$res['data']=$data;
+				
+				$res['parrentid']=0;
+
+				$res['parrentcategory']=$this->article->getCategorybyParrentid();
+				
+				$res['childrencategory']=$this->article->getCategorybyParrentid(1);
+
+				$this->load->view('articleedit', $res);
 			
 			}
 
@@ -415,9 +435,33 @@
 
 		{
 
-			$content = $this->input->post('content1');
+			if ($this->input->post('articleid') == 0)
 
-			echo $content;
+			{
+
+				echo "新文章哦"."<br>";
+
+			}
+
+			else
+
+			{
+
+				echo "在编辑".$this->input->post('articleid')."啦！"."<br>";
+
+			}
+
+			echo "articletitle".$this->input->post('articletitle')."<br>";
+
+			echo "articleid".$this->input->post('articleid')."<br>";
+
+			echo "author".$this->input->post('author')."<br>";
+
+			echo "parrentcategory".$this->input->post('parrentcategory')."<br>";
+
+			echo "childrencategory".$this->input->post('childrencategory')."<br>";
+
+			echo "content1".$this->input->post('content1')."<br>";
 
 		}
 

@@ -257,7 +257,7 @@
 
 				$articletable .= "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</a></td>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"passed(this.value)\"";
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable center\" onchange=\"passed(this.value)\"";
 
 				if($row->passed)
 
@@ -268,7 +268,7 @@
 
 				$articletable .= "value=".$row->articleid."></td>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"deleted(this.value)\"";
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable center\" onchange=\"deleted(this.value)\"";
 
 				if($row->deleted)
 
