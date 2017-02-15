@@ -50,6 +50,7 @@
 
 					$this->session->set_userdata('startwith', 0);
 					//设定翻页时的偏移量，初始值为0
+					$this->session->set_userdata('admin', $this->input->post('username'));
 
 					$this->load->view('adminheader', $res);
 

@@ -73,34 +73,34 @@
 
 		{ //根据搜索关键字查询记录返回articlefound视图，每20条视图做一次分页
 
-		$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
+			$this->load->model('Article_model', 'article'); //载入Article_model模型，起别名article
 
-		$this->load->model('Nav_model', 'nav');
-		//调用Nav_model模型，起别名nav
+			$this->load->model('Nav_model', 'nav');
+			//调用Nav_model模型，起别名nav
 
-		$res=$this->nav->nav();
+			$res=$this->nav->nav();
 
-		if(($this->input->post('forsearching') == NULL) and ($this->uri->segment(4) == NULL))
+			if(($this->input->post('forsearching') == NULL) and ($this->uri->segment(4) == NULL))
 
-		{
+			{
 
-		//如果$this->input->post('forsearching')和$this->uri->segment(4)均为NULL值，
-		//表明搜索框没有输入内容，segment(4)段也不存在，避免了不输入内容就点击搜索按钮导致搜索出全部文章
-		//从而导致分类页的混乱
+				//如果$this->input->post('forsearching')和$this->uri->segment(4)均为NULL值，
+				//表明搜索框没有输入内容，segment(4)段也不存在，避免了不输入内容就点击搜索按钮导致搜索出全部文章
+				//从而导致分类页的混乱
 
-			$res['found']=false;
+				$res['found']=false;
 
-			$this->load->view('header');
+				$this->load->view('header');
 
-			$this->load->view('nav',$res);
+				$this->load->view('nav',$res);
 
-			$this->load->view('articlefound'); //把数据传递给视图articlefound
+				$this->load->view('articlefound'); //把数据传递给视图articlefound
 
-			$this->load->view('footer');
+				$this->load->view('footer');
 
-		}
+			}
 
-		else
+			else
 
 			{
 
@@ -143,7 +143,9 @@
 
 				$res['keyword'] = $keyword;
 
-				if($this->db->affected_rows()==0) {
+				if($this->db->affected_rows()==0)
+
+				{
 
 					$res['found']=false;
 					//没有查到数据
@@ -220,6 +222,7 @@
 			//配置分页类所需要的4个参数			
 
 			$res['links'] = $this->pagi->mypagination($paginationinfo);
+			//调用分页类
 
 			if($data['total_rows']==0) 
 
@@ -331,11 +334,9 @@
 
 		public function showChildCategory ()
 
-		{ 
+		{ //根据post进来的ID做为父ID，查询到该ID对应的全部子ID返回
 
 			$parrentcategory = $this->input->post('id');
-
-			//$parrentcategory = $this->uri->segment(3);
 
 			$this->load->model('Article_model', 'article');
 
@@ -355,7 +356,7 @@
 
 		public function showArticleinTable ()
 
-		{
+		{ //根据POST进来的ID作为classid，查询相关文章10篇显示在table中
 
 			$childrencategory = $this->input->post('id');
 
@@ -380,7 +381,7 @@
 			
 			if ($this->uri->segment(3) <> NUll)
 
-			{
+			{ //segment(3)不为NULL，表示编辑已存在的文章
 
 				$data=$this->article->getArticlebyId($this->uri->segment(3)); 
 				//调用模型中的getonearticle方法，传递一个参数，返回结果是一个对象，不是数组
@@ -433,41 +434,44 @@
 
 		public function articlePost ()
 
-		{
+		{ //从articleedit页点击提交按钮后，由本方法在数据库中更新已有文章或插入一条新记录
 
 			if ($this->input->post('articleid') == 0)
 
-			{
+			{ //新文章
 
-				echo "新文章哦"."<br>";
+				$res['id'] = 0;
 
 			}
 
 			else
 
-			{
+			{ //已有文章
 
-				echo "在编辑".$this->input->post('articleid')."啦！"."<br>";
+				$res['id'] = $this->input->post('articleid');
 
 			}
 
-			echo "articletitle".$this->input->post('articletitle')."<br>";
+			$data = array (
+					'title' => $this->input->post('articletitle'),
+					'author' => $this->input->post('author'),
+					'classid' => $this->input->post('childrencategory'),
+					'content' => $this->input->post('content1'),
+					'poster' => $this->session->admin,
+					'updatetime' => date('Y-m-d H:m:s')
+				);
 
-			echo "articleid".$this->input->post('articleid')."<br>";
+			$res['data'] = $data;
 
-			echo "author".$this->input->post('author')."<br>";
+			$this->load->model('Article_model','article');
 
-			echo "parrentcategory".$this->input->post('parrentcategory')."<br>";
-
-			echo "childrencategory".$this->input->post('childrencategory')."<br>";
-
-			echo "content1".$this->input->post('content1')."<br>";
+			$this->article->articlePost($res);
 
 		}
 
 		public function pageup ()
 
-		{
+		{ //上翻页，如果 startwith > 0 的情况下才翻，翻的时候startwith-10
 
 			$this->load->model('Article_model', 'article');	
 
@@ -487,7 +491,7 @@
 
 		public function pagedown ()
 
-		{
+		{ //下翻页，如果 sum - startwith > 10 才翻，翻的时候startwith+10
 
 
 			$this->load->model('Article_model', 'article');
@@ -508,6 +512,27 @@
 
 		}
 
+		public function articlepassed()
+
+		{
+			$articleid = $this->input->post('id');
+
+			$this->load->model('Article_model', 'article');
+
+			$this->article->articlepassed($articleid);
+
+		}
+
+		public function articledeleted()
+
+		{
+			$articleid = $this->input->post('id');
+
+			$this->load->model('Article_model', 'article');
+
+			$this->article->articledeleted($articleid);
+
+		}
 	}
 
 ?>

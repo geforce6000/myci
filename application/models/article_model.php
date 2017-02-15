@@ -93,6 +93,7 @@
 								->join('articleclass', 'article.classid = articleclass.classid', 'left')
 								->where('articleclass.parrentid', $classid)
 								->where('deleted !=', 1)
+								->where('passed', 1)
 								->order_by('article.articleid', 'DESC')
 								->get();
 
@@ -104,6 +105,7 @@
 								->join('articleclass', 'article.classid = articleclass.classid', 'left')
 								->where('articleclass.parrentid', $classid)
 								->where('deleted !=', 1)
+								->where('passed', 1)
 								->limit($section, $startwith)
 								->order_by('article.articleid', 'DESC')
 								->get();
@@ -151,6 +153,7 @@
 					->select('title, articleid, updatetime, hits')
 					->where('classid', $classid)
 					->where('deleted !=', 1)
+					->where('passed', 1)
 					->order_by('articleid', 'DESC')
 					->get();
 
@@ -163,6 +166,7 @@
 					->select('title, articleid, content, defaultpic, updatetime, hits')
 					->where('classid', $classid)
 					->where('deleted !=', 1)
+					->where('passed', 1)
 					->limit($section, $startwith)
 					->order_by('articleid', 'DESC')
 					->get();
@@ -257,7 +261,7 @@
 
 				$articletable .= "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</a></td>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable center\" onchange=\"passed(this.value)\"";
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"passed(this.value)\"";
 
 				if($row->passed)
 
@@ -268,7 +272,7 @@
 
 				$articletable .= "value=".$row->articleid."></td>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable center\" onchange=\"deleted(this.value)\"";
+				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"deleted(this.value)\"";
 
 				if($row->deleted)
 
@@ -282,6 +286,86 @@
 
 			return $articletable;
 
+		}
+
+		public function articlePost ($res)
+
+		{
+
+			$data = $res['data'];
+
+			if($res['id'] == 0)
+
+			{ //插入新文章
+
+				$data['deleted'] = 0;
+
+				$data['passed'] = 0;
+
+				$this->db->insert('article', $data);
+
+				if ($this->db->affected_rows() == 1)
+
+				{
+					echo "一篇文章已插入";
+				}
+
+			}
+
+			else
+
+			{ //更新旧文章
+
+				$this->db->where('articleid', $res['id'])
+					->update('article', $data);
+
+
+				if ($this->db->affected_rows() == 1)
+
+				{
+					echo "一篇文章已更新";
+				}
+
+			}
+
+		}
+
+		public function articlepassed($articleid)
+
+		{
+
+			$articledata = $this->db->from('article')
+							->where('articleid', $articleid)
+							->get();
+
+			$data = $articledata->result();
+
+			$article = $data[0];
+
+			$article->passed = !$article->passed;
+
+			$this->db->where('articleid', $articleid)
+					->replace('article', $article);
+
+		}
+
+		public function articledeleted($articleid)
+
+		{
+
+			$articledata = $this->db->from('article')
+							->where('articleid', $articleid)
+							->get();
+
+			$data = $articledata->result();
+
+			$article = $data[0];
+
+			$article->deleted = !$article->deleted;
+
+			$this->db->where('articleid', $articleid)
+					->replace('article', $article);
+					
 		}
 
 	}

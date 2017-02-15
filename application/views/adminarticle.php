@@ -27,6 +27,8 @@
                 
                 <h1 class="headline">文章管理</h1>
 
+                <hr>
+
                 <div class="row" data-equalizer>
 
                     <div class="row collapse">
@@ -206,7 +208,17 @@
 
         {
 
-            alert(articleid+"clicked!");
+            $.post("/article/articlepassed", { id : articleid } ,
+
+                function(data,status)
+
+            {
+
+
+
+            }
+
+          )
 
         }
 
@@ -214,7 +226,17 @@
 
         {
 
-            alert(articleid+"clicked!");
+            $.post("/article/articledeleted", { id : articleid } ,
+
+                function(data,status)
+
+            {
+
+
+
+            }
+
+          )
             
         }
 
