@@ -374,7 +374,7 @@
 
 		{ //根据segment(3)传入的ID编号来编辑一篇文章，或者在segment(3)为NULL的情况下新建一篇文章
 
-			$this->load->helper('url');
+			//$this->load->helper('url');
 
 			$this->load->model('Article_model','article'); 
 			//调用模型，Article_model是article_model.php中的类名，后面的article是调用后形成的别名，方便控制器使用
@@ -452,13 +452,24 @@
 
 			}
 
+			preg_match_all('/<img.+src=\"?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/i',$this->input->post('content1'),$match);
+
+			$defaultpic = $match[1][0];
+
+			$includepic = ($match[1][0])?(1):(0);
+
+			$uploadfiles = implode('|',$match[1]);
+
 			$data = array (
 					'title' => $this->input->post('articletitle'),
 					'author' => $this->input->post('author'),
 					'classid' => $this->input->post('childrencategory'),
 					'content' => $this->input->post('content1'),
 					'poster' => $this->session->admin,
-					'updatetime' => date('Y-m-d H:m:s')
+					'updatetime' => date('Y-m-d H:m:s'),
+					'defaultpic' => $defaultpic,
+					'includepic' => $includepic,
+					'uploadfiles' => $uploadfiles
 				);
 
 			$res['data'] = $data;
