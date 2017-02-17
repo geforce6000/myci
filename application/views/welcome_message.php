@@ -6,15 +6,11 @@
 
 	  	<!--图片大小1000*300正好填满-->
 
-	    <li><a href="http://www.jq22.com/" title="这里是测试标题一"><img src="./image/1.png"></a></li>
+	  	<?php foreach($slidebox as $row): ?>
 
-	    <li><a href="http://www.jq22.com/" title="这里是测试标题二"><img src="./image/2.png"></a></li>
+	  		<li><a href="<?php echo site_url("article/id/").$row->articleid; ?>" title="<?=$row->title?>"><img src="<?=$row->imagefile?>"></a></li>
 
-	    <li><a href="http://www.jq22.com/" title="这里是测试标题三"><img src="./image/3.png"></a></li>
-
-	    <li><a href="http://www.jq22.com/" title="这里是测试标题四"><img src="./image/4.png"></a></li>
-
-	    <li><a href="http://www.jq22.com/" title="这里是测试标题五"><img src="./image/5.png"></a></li>
+	  	<?php endforeach; ?>
 
   	</ul>
 

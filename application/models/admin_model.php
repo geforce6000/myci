@@ -22,6 +22,30 @@
 
 		}
 
+		public function adminmenu ()
+
+		{ //返回admin页左侧导航菜单
+
+			$query = $this->db->get('adminmenu');
+
+			$data = $query->result();
+
+			return $data;
+
+		}
+
+		public function adminslidebox ()
+
+		{
+
+			$query = $this->db->get('slidebox');
+
+			$data = $query->result();
+
+			return $data;
+			
+		}
+
 	}
 
 ?>

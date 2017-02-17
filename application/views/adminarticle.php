@@ -1,28 +1,3 @@
-
-<body>
-
-    <div >
-
-        <div class="row" data-equalizer>
-
-            <div class="large-2 columns" data-equalizer-watch style="background-color:#f1f1f1;">
-
-                <ul class="side-nav">
-
-                    <li class="active"><a href="#">文章管理</a></li>
-                    
-                    <li><a href="#">首页轮播管理</a></li>
-                    
-                    <li><a href="#">文章分类管理</a></li>
-                    
-                    <li><a href="#">用户管理</a></li>
-                    
-                    <li><a href="#">访客分析</a></li>
-                
-                </ul>
-            
-            </div>
-            
             <div class="large-10 columns" data-equalizer-watch>
                 
                 <h1 class="headline">文章管理</h1>

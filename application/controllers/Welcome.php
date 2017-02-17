@@ -37,13 +37,13 @@ class Welcome extends CI_Controller {
 
 		$this->load->model('Article_model', 'article');
 
-		$newslist=$this->article->getarticlebyclass(97,0,10);
+		$res['newslist']=$this->article->getarticlebyclass(97,0,10);
 
-		$res['newslist']=$newslist;	
+		$res['bulletin']=$this->article->getarticlebyclass(100,0,10);
 
-		$bulletin=$this->article->getarticlebyclass(100,0,10);
+		$this->load->model('Admin_model', 'admin');
 
-		$res['bulletin']=$bulletin;
+		$res['slidebox'] = $this->admin->adminslidebox();
 
 		$this->load->helper('url');
 
