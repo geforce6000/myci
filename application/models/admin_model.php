@@ -42,7 +42,27 @@
 
 			$data = $query->result();
 
-			return $data;
+            $tablestr = "<table><tr><th>序号</th><th>文章编号</th><th>文章标题</th><th>图片</th><th>上传图片</th></tr>";
+
+            foreach ($data as $row)
+
+            {
+
+                $tablestr .= "<tr><td width=\"20px\">$row->id</td>";
+
+                $tablestr .= "<td width=\"90px\"><input name=\"articleid\" id=\"$row->id.aid\" onchange=\"aid(this.value)\" type=\"text\" value=\"$row->articleid\"></td>";
+
+                $tablestr .= "<td width=\"390px\"><input type=\"text\" id=\"$row->id.title\"\" value=\"$row->title\"></td>";
+
+                $tablestr .= "<td width=\"200px\"><img name=\"articlepic\" id=\"$row->id.pic\" src=\"".site_url($row->imagefile)."\" id=\"".site_url($row->id)."\"></td>";
+
+                $tablestr .= "<td width=\"50px\"><input name=\"articpic\" id=\"$row->id\"btn\" type=\"button\" value=\"上传图片\" onclick=\"changeimage(this.id)\"></td></tr>";
+
+            }
+
+            $tablestr .= "</table>";
+
+            return $tablestr;
 			
 		}
 

@@ -49,7 +49,8 @@
 
 				if ($data[0]->level == 0)
 				//level==0表明是超级管理员，具备全部权限
-				//目前考虑权限包括1修改所有用户信息，2发布、修改、删除、置顶文章，3审核普通管理员发的文，4修改文章分类表->会间接影响导航条
+				//目前考虑权限包括1修改所有用户信息，2发布、修改、删除、置顶文章，3审核普通管理员发的文
+				//4修改文章分类表->会间接影响导航条
 
 				{
 
@@ -74,7 +75,9 @@
 
 				}
 
-				else //普通管理员，只具备部分权限（目前考虑只有1修改自己的信息，2发文，3删除自己发出但未审核的文，2和3做到一个页面里）
+				else
+				//普通管理员，只具备部分权限（目前考虑只有1修改自己的信息，2发文，3删除自己发出但未审核的文
+				//2和3做到一个页面里）
 
 				{ //将来替换成管理员视图
 
@@ -175,6 +178,10 @@
 
 			$res['slidebox'] = $this->admin->adminslidebox();
 
+            $this->load->model('Article_model', 'article');
+
+            $res['lastten'] = $this->article->getArticleforAdmin(0);
+
 			$this->load->view('adminheader', $res);
 
 			$this->load->view('adminslidebox');
@@ -182,6 +189,12 @@
 			$this->load->view('footer');
 
 		}
+
+		public function slideboxchangeaid()
+
+        {
+            echo "ajax return texts";
+        }
 
 		public function user()
 

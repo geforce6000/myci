@@ -7,6 +7,10 @@
 		public function mypagination ($data)
 
 		{ //把CI的分页类做了一个封装，免得每次在控制器中调用都需要复制一堆初始化代码，现在只需要载入模型，调用方法时传4个参数，即可得到分页链接
+            //$data['url'] = 控制器/方法名称 （URL中的第1和第2段）
+            //$data['keyword'] = 关键字 （URL中第3段）
+            //$data['total_rows'] = 总记录数
+            //$data['per_page'] = 每页记录数
 
 			$this->load->library('pagination');//载入分页类
 

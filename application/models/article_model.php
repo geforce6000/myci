@@ -236,61 +236,72 @@
 
 		public function getArticleforAdmin ($classid, $startwith=0)
 
-		{
+		{ //根据传入的$classid来查询文章返回给admin/adminarticle页面显示在表格中，$startwith为查询偏移量，缺省值为0
 
-			$articlefound=$this->db->from('article')
-				->select('articleid, title, deleted, passed')
-				->where('classid', $classid)
-				->limit(10, $startwith)
-				->order_by('articleid', 'DESC')
-				->get();
-				
-			$data=$articlefound->result();
+			if ($classid == 0)
 
-			$articletable = "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
+            {
+                $articlefound = $this->db->from('article')
+                    ->select('articleid, title')
+                    ->limit(10)
+                    ->order_by('articleid', 'DESC')
+                    ->get();
 
-			foreach ($data as $row)
+                return $articlefound->result();
 
-			{
+            }
 
-				$articletable .= "<tr>";
+			else {
 
-				$articletable .= "<td>$row->articleid</td>";
+                $articlefound = $this->db->from('article')
+                    ->select('articleid, title, deleted, passed')
+                    ->where('classid', $classid)
+                    ->limit(10, $startwith)
+                    ->order_by('articleid', 'DESC')
+                    ->get();
 
-				$articletable .= "<td width=\"590\"><a href=".site_url('article/id/').$row->articleid." target=\"_BLANK\">$row->title</td>";
+                $data = $articlefound->result();
 
-				$articletable .= "<td><a href=".site_url('article/articleedit/').$row->articleid." target=\"_BLANK\">编辑</a></td>";
+                $articletable = "<tr><th>序号</th><th>标题</th><th>编辑</th><th>通过</th><th>删除</th></tr>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"passed(this.value)\"";
+                foreach ($data as $row) {
 
-				if($row->passed)
+                    $articletable .= "<tr>";
 
-				{
-					$articletable .= "checked = \"checked\"";
+                    $articletable .= "<td>$row->articleid</td>";
 
-				}
+                    $articletable .= "<td width=\"590\"><a href=" . site_url('article/id/') . $row->articleid . " target=\"_BLANK\">$row->title</td>";
 
-				$articletable .= "value=".$row->articleid."></td>";
+                    $articletable .= "<td><a href=" . site_url('article/articleedit/') . $row->articleid . " target=\"_BLANK\">编辑</a></td>";
 
-				$articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"deleted(this.value)\"";
+                    $articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"passed(this.value)\"";
 
-				if($row->deleted)
+                    if ($row->passed) {
+                        $articletable .= "checked = \"checked\"";
 
-				{
-					$articletable .= "checked = \"checked\"";
-				}
+                    }
 
-				$articletable .= "value=".$row->articleid."></td>";
+                    $articletable .= "value=" . $row->articleid . "></td>";
 
-			}
+                    $articletable .= "<td><input type=\"checkbox\" name=\"passed\" class=\"checkboxintable\" onchange=\"deleted(this.value)\"";
 
-			return $articletable;
+                    if ($row->deleted) {
+                        $articletable .= "checked = \"checked\"";
+                    }
+
+                    $articletable .= "value=" . $row->articleid . "></td>";
+
+                }
+
+                return $articletable; //$articletable是根据查询数据形成的一个含有HTML标签的字符串，是一个完整的HTML表格数据
+
+            }
 
 		}
 
 		public function articlePost ($res)
 
-		{
+		{ //接收来自article/articleedit的数据，提交到数据库中，即可以保存新文章，也可以更新旧文章
 
 			$data = $res['data'];
 
@@ -333,7 +344,7 @@
 
 		public function articlepassed($articleid)
 
-		{
+		{ //给adminarticle视图的passed方法提供ajax数据，可以切换文章的passed状态
 
 			$articledata = $this->db->from('article')
 							->where('articleid', $articleid)
@@ -352,7 +363,7 @@
 
 		public function articledeleted($articleid)
 
-		{
+		{ //给adminarticle视图的deleted方法提供ajax数据，可以切换文章的deleted状态
 
 			$articledata = $this->db->from('article')
 							->where('articleid', $articleid)
