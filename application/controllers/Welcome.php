@@ -43,7 +43,7 @@ class Welcome extends CI_Controller {
 
 		$this->load->model('Admin_model', 'admin');
 
-		$res['slidebox'] = $this->admin->adminslidebox();
+		$res['slidebox'] = $this->admin->slideboxforwelcome();
 
 		$this->load->helper('url');
 

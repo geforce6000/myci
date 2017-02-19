@@ -192,8 +192,67 @@
 
 		public function slideboxchangeaid()
 
-        {
-            echo "ajax return texts";
+        { //轮播图管理页面，输入文章编号后，如果能查到相应文章，则自动将文章标题填好，否则空白
+
+            $articleid = $this->input->post('id');
+
+            $this->load->model('Article_model', 'article');
+
+			$article = $this->article->getArticlebyId($articleid);
+
+            if($this->db->affected_rows() <> 0)
+
+            {
+
+                echo $article[0]->title;
+
+            }
+
+            else
+
+            {
+
+                echo "";
+
+            }
+        }
+
+		public function postwithimg()
+
+        { //首先要配置上传类，然后再上传图片，并把轮播数据写到表中
+
+			$config['upload_path']      = './uploadfiles/';
+			$config['allowed_types']    = 'gif|jpg|png';
+			$config['max_size']         = 1000;
+			$config['max_width']        = 1000;
+			$config['max_height']       = 768;
+            //$config['file_name']        = uniqid();
+
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('imagefile'))
+			{
+				$error = array('error' => $this->upload->display_errors());
+
+				//$this->load->view('upload_form', $error);
+				echo "errors";
+			}
+			else
+			{
+				$data = $this->upload->data();
+
+                var_dump($data);
+
+				//$this->load->view('upload_success', $data);
+                $articledata = array (
+                    'id' => $this->input->post('id'),
+                    'articleid' => $this->input->post('articleid'),
+                    'title' => $this->input->post('articletitle'),
+                    'imagefile' => ".\\uploadfiles\\".$data['file_name']
+                );
+				$this->load->model('Admin_model', 'admin');
+				$this->admin->postwithimg($articledata);
+			}
         }
 
 		public function user()

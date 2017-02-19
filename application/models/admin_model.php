@@ -50,13 +50,13 @@
 
                 $tablestr .= "<tr><td width=\"20px\">$row->id</td>";
 
-                $tablestr .= "<td width=\"90px\"><input name=\"articleid\" id=\"$row->id.aid\" onchange=\"aid(this.value)\" type=\"text\" value=\"$row->articleid\"></td>";
+                $tablestr .= "<td width=\"90px\"><input name=\"articleid\" class=\"$row->id articleid\" id=\"$row->id\" onchange=\"aid(this.value, id)\" type=\"text\" value=\"$row->articleid\"></td>";
 
-                $tablestr .= "<td width=\"390px\"><input type=\"text\" id=\"$row->id.title\"\" value=\"$row->title\"></td>";
+                $tablestr .= "<td width=\"390px\"><input type=\"text\" class=\"$row->id title\" id=\"".$row->id."title\" value=\"$row->title\"></td>";
 
-                $tablestr .= "<td width=\"200px\"><img name=\"articlepic\" id=\"$row->id.pic\" src=\"".site_url($row->imagefile)."\" id=\"".site_url($row->id)."\"></td>";
+                $tablestr .= "<td width=\"200px\"><img name=\"articlepic\" class=\"$row->id pic\" id=\"$row->id.pic\" src=\"".site_url($row->imagefile)."\" id=\"".site_url($row->id)."\"></td>";
 
-                $tablestr .= "<td width=\"50px\"><input name=\"articpic\" id=\"$row->id\"btn\" type=\"button\" value=\"上传图片\" onclick=\"changeimage(this.id)\"></td></tr>";
+                $tablestr .= "<td width=\"50px\"><input name=\"articpic\" onmouseover=\"mouseonbutton(this.id)\" class=\"$row->id btn\" id=\"$row->id.btn\" type=\"button\" data-reveal-id=\"postwithimg\" value=\"提交图片\"></td></tr>";
 
             }
 
@@ -65,6 +65,25 @@
             return $tablestr;
 			
 		}
+
+		public function slideboxforwelcome ()
+
+        {
+            $query = $this->db->get('slidebox');
+
+            $data = $query->result();
+
+            return $data;
+        }
+
+		public function postwithimg($data)
+
+        {
+            $this->db->where('id', $data['id'])
+                ->update('slidebox', $data);
+
+            redirect('/admin/slidebox/');
+        }
 
 	}
 
