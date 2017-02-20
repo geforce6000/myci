@@ -454,12 +454,18 @@
 
 			preg_match_all('/<img.+src=\"?(.+\.(jpg|gif|bmp|bnp|png))\"?.+>/i',$this->input->post('content1'),$match);
 
-			$defaultpic = $match[1][0];
-
-			$includepic = ($match[1][0])?(1):(0);
-
-			$uploadfiles = implode('|',$match[1]);
-
+			if(!empty($match[0]))
+			{
+				$defaultpic = $match[1][0];
+                $includepic = ($match[1][0])?(1):(0);
+                $uploadfiles = implode('|',$match[1]);
+			}
+			else
+			{
+				$defaultpic = "";
+                $includepic = "";
+                $uploadfiles ="";
+			}
 			$data = array (
 					'title' => $this->input->post('articletitle'),
 					'author' => $this->input->post('author'),

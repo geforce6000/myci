@@ -12,6 +12,7 @@
 				->select('username, name, level')
 				->where('username', $username)
 				->where('userpw', $userpw)
+                ->where('passed', 1)
 				->get();
 
 			$data=$query->result();
@@ -83,6 +84,62 @@
                 ->update('slidebox', $data);
 
             redirect('/admin/slidebox/');
+        }
+
+		public function user()
+
+        {
+            $query = $this->db->get('administrator');
+
+            $data = $query->result();
+
+            $tablestr = "<table><tr><th>序号</th><th>用户名</th><th>邮箱</th><th>用户等级</th><th>启用</th><th>管理</th></tr>";
+
+            foreach ($data as $row)
+            {
+                $tablestr .= "<tr><td width=\"20px\">$row->userid</td>";
+
+                $tablestr .= "<td width=\"90px\"><input name=\"username\" class=\"$row->userid username\" id=\"$row->userid\" type=\"text\" value=\"$row->username\"></td>";
+
+                $tablestr .= "<td width=\"390px\"><input type=\"text\" class=\"$row->userid email\" id=\"".$row->userid."email\" value=\"$row->email\"></td>";
+
+                $tablestr .= "<td width=\"90px\"><input type=\"text\" class=\"$row->userid level\" id=\"".$row->userid."level\" value=\"$row->level\"></td>";
+
+                $tablestr .= "<td><input type=\"checkbox\" name=\"passed\" class=\"$row->userid passed\" onchange=\"passed(this.value)\"";
+
+                if ($row->passed) {
+
+                    $tablestr .= "checked = \"checked\"";
+
+                }
+
+                $tablestr .= "value=\"$row->userid\"></td>";
+
+                $tablestr .= "<td width=\"100px\"><input name=\"newpassword\" class=\"$row->userid btn\" id=\"$row->userid.btn\" type=\"button\" data-reveal-id=\"newpassword\" value=\"重设密码\"></td></tr>";
+
+            }
+
+            $tablestr .= "</table>";
+
+            return $tablestr;
+        }
+
+        public function adminpass($userid)
+
+        {
+            $admindata = $this->db->from('administrator')
+                ->where('userid', $userid)
+                ->get();
+
+            $data = $admindata->result();
+
+            $user = $data[0];
+
+            $user->passed = !$user->passed;
+
+            $this->db->where('userid', $userid)
+                ->replace('administrator', $user);
+
         }
 
 	}

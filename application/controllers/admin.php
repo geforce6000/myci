@@ -259,9 +259,35 @@
 
 		{
 
-			echo "用户管理";
+			$this->load->model('Admin_model', 'admin');
+
+			$res['menulist'] = $this->admin->adminmenu();
+
+			$res['user'] = $this->admin->user();
+
+			$this->load->view('adminheader', $res);
+
+			$this->load->view('adminuser');
+
+			$this->load->view('footer');
 
 		}
+
+		public function adminpass()
+
+        {
+            $userid = $this->input->post('id');
+
+            $this->load->model('Admin_model', 'admin');
+
+            $this->admin->adminpass($userid);
+        }
+
+		public function newadmin()
+
+        {
+
+        }
 
 		public function stat()
 

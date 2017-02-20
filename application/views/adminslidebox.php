@@ -28,7 +28,7 @@
     <h2>提交说明文字和图片</h2>
     <hr>
     <form action="<?php echo site_url('admin/postwithimg')?>" method="post" enctype ="multipart/form-data">
-        <label for="id">
+        <label for="id">轮播序号
             <input type="text" name="id" id="id" value="">
         </label>
         <label for="articleid">文章序号

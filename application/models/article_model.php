@@ -315,31 +315,20 @@
 
 				$this->db->insert('article', $data);
 
-				if ($this->db->affected_rows() == 1)
-
-				{
-					echo "一篇文章已插入";
-				}
-
 			}
 
-			else
-
-			{ //更新旧文章
+			else { //更新旧文章
 
 				$this->db->where('articleid', $res['id'])
-					->update('article', $data);
-
-
-				if ($this->db->affected_rows() == 1)
-
-				{
-					echo "一篇文章已更新";
-
-				}
+						->update('article', $data);
 
 			}
 
+            if ($this->db->affected_rows() == 1)
+
+            {
+                redirect('/admin/adminarticle/');
+            }
 		}
 
 		public function articlepassed($articleid)
