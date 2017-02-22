@@ -1,3 +1,5 @@
+<!--首页轮播图管理视图-->
+
 <div class="large-10 columns" data-equalizer-watch>
     <h1 class="headline">首页轮播管理
     <button type="button" class="button right" data-reveal-id="myModal">最近10篇文章</button></h1>

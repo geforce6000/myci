@@ -1,3 +1,4 @@
+<!--用户管理页，可以添加和修改用户信息-->
 <div class="large-10 columns" data-equalizer-watch>
     <h1 class="headline">用户管理
         <button type="button" class="button right" data-reveal-id="newadmin">新建管理员</button>
@@ -38,10 +39,36 @@
     <a class="close-reveal-modal">&times;</a>
 </div>
 
-<!--模态框，重设一个管理员密码-->
-<div id="newpassword" class="reveal-modal tiny" data-reveal>
-    <h2>重设密码</h2>
+<!--模态框，重设一个管理员信息-->
+<div id="updateuserinfo" class="reveal-modal tiny" data-reveal>
+    <h2>重设管理员信息</h2>
     <hr>
+    <form action="<?php echo site_url('admin/updateuserinfo')?>" method="post">
+        <label for="useridup" class="hide">用户编号
+            <input type="text" name="useridup" id="useridup" value="">
+        </label>
+        <label for="usernameup">用户名
+            <input type="text" name="usernameup" id="usernameup" value="">
+        </label>
+        <label for="passwordup">密码
+            <input type="password" name="passwordup" id="passwordup" value="<?php echo set_value('passwordup'); ?>">
+        </label>
+        <label for="passconfup">密码
+            <input type="password" name="passconfup" id="passconfup" value="<?php echo set_value('passconfup'); ?>">
+        </label>
+        <label for="phoneup" class="hide">手机号码
+            <input type="text" name="phoneup" id="phoneup" value="">
+        </label>
+        <label for="emailup" class="hide">电子邮箱
+            <input type="text" name="emailup" id="emailup" value="">
+        </label>
+        <label for="levelup" class="hide">用户等级
+            <input type="text" name="levelup" id="levelup" value="">
+        </label>
+        <input class="button" id="userinfosubmit" type="submit" value="提交">
+    </form>
+    <a class="close-reveal-modal">&times;</a>
+
 
 </div>
 
@@ -63,5 +90,15 @@
             }
 
         )
+    }
+
+    function userinfochange(id)
+    {
+        var uid = "#"+id[0];
+        $("#useridup").val(id[0]);
+        $("#usernameup").val($(uid).val());
+        $("#phoneup").val($(uid+"phone").val());
+        $("#emailup").val($(uid+"email").val());
+        $("#levelup").val($(uid+"level").val());
     }
 </script>

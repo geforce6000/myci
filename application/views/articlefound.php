@@ -20,7 +20,7 @@
 			$redtitle=str_replace($keyword, "<font color='#FF0000'>".$keyword."</font>", $row->title);
 			//把title中的关键字颜色设成红色
 
-			echo '<p><a href='.base_url('article/id/').$row->articleid.'>'.$row->articleid.'.'.$redtitle.'</a></p>';
+			echo '<p><a href='.base_url('article/id/').$row->articleid.' target=\"_BLANK\">'.$row->articleid.'.'.$redtitle.'</a></p>';
 			//逐条显示文件链接
 
 		}

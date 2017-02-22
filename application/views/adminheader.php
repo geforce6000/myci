@@ -15,7 +15,7 @@
 </script>
 </head>
 <body>
-
+<!--管理页通用页头，所有的后台管理页都要加载-->
     <div >
 
         <div class="row" data-equalizer>
@@ -24,17 +24,7 @@
 
                 <ul class="side-nav">
 
-                    <!--li class="active"><a href="#">文章管理</a></li>
-                    
-                    <li><a href="#">首页轮播管理</a></li>
-                    
-                    < 暂时不想做了
-                    li><a href="#">文章分类管理</a></li
-                    >
-                    
-                    <li><a href="#">用户管理</a></li>
-                    
-                    <li><a href="#">访客分析</a></li-->
+                    <!--显示左侧菜单栏-->
 
                     <?php foreach ($menulist as $row): ?>
 

@@ -51,13 +51,13 @@
 
                 $tablestr .= "<tr><td width=\"20px\">$row->id</td>";
 
-                $tablestr .= "<td width=\"90px\"><input name=\"articleid\" class=\"$row->id articleid\" id=\"$row->id\" onchange=\"aid(this.value, id)\" type=\"text\" value=\"$row->articleid\"></td>";
+                $tablestr .= "<td width=\"90px\"><input style=\"margin:0\" name=\"articleid\" class=\"$row->id articleid\" id=\"$row->id\" onchange=\"aid(this.value, id)\" type=\"text\" value=\"$row->articleid\"></td>";
 
-                $tablestr .= "<td width=\"390px\"><input type=\"text\" class=\"$row->id title\" id=\"".$row->id."title\" value=\"$row->title\"></td>";
+                $tablestr .= "<td width=\"390px\"><input style=\"margin:0\" type=\"text\" class=\"$row->id title\" id=\"".$row->id."title\" value=\"$row->title\"></td>";
 
-                $tablestr .= "<td width=\"200px\"><img name=\"articlepic\" class=\"$row->id pic\" id=\"$row->id.pic\" src=\"".site_url($row->imagefile)."\" id=\"".site_url($row->id)."\"></td>";
+                $tablestr .= "<td width=\"200px\"><img style=\"margin:0\" name=\"articlepic\" class=\"$row->id pic\" id=\"$row->id.pic\" src=\"".site_url($row->imagefile)."\" id=\"".site_url($row->id)."\"></td>";
 
-                $tablestr .= "<td width=\"50px\"><input name=\"articpic\" onmouseover=\"mouseonbutton(this.id)\" class=\"$row->id btn\" id=\"$row->id.btn\" type=\"button\" data-reveal-id=\"postwithimg\" value=\"提交图片\"></td></tr>";
+                $tablestr .= "<td width=\"50px\"><input style=\"margin:0\" name=\"articpic\" onmouseover=\"mouseonbutton(this.id)\" class=\"$row->id btn\" id=\"$row->id.btn\" type=\"button\" data-reveal-id=\"postwithimg\" value=\"提交图片\"></td></tr>";
 
             }
 
@@ -82,8 +82,6 @@
         {
             $this->db->where('id', $data['id'])
                 ->update('slidebox', $data);
-
-            redirect('/admin/slidebox/');
         }
 
 		public function user()
@@ -99,15 +97,15 @@
             {
                 $tablestr .= "<tr><td width=\"20px\">$row->userid</td>";
 
-                $tablestr .= "<td width=\"150px\"><input name=\"username\" class=\"$row->userid username\" id=\"$row->userid\" type=\"text\" value=\"$row->username\"></td>";
+                $tablestr .= "<td width=\"150px\"><input style=\"margin:0\" name=\"username\" class=\"$row->userid username\" id=\"$row->userid\" type=\"text\" value=\"$row->username\"></td>";
 
-                $tablestr .= "<td width=\"190px\"><input type=\"text\" class=\"$row->userid email\" id=\"".$row->userid."email\" value=\"$row->email\"></td>";
+                $tablestr .= "<td width=\"190px\"><input style=\"margin:0\" type=\"text\" class=\"$row->userid email\" id=\"".$row->userid."email\" value=\"$row->email\"></td>";
 
-                $tablestr .= "<td width=\"150px\"><input type=\"text\" class=\"$row->userid phone\" id=\"".$row->userid."phone\" value=\"$row->phone\"></td>";
+                $tablestr .= "<td width=\"150px\"><input style=\"margin:0\" type=\"text\" class=\"$row->userid phone\" id=\"".$row->userid."phone\" value=\"$row->phone\"></td>";
 
-                $tablestr .= "<td width=\"90px\"><input type=\"text\" class=\"$row->userid level\" id=\"".$row->userid."level\" value=\"$row->level\"></td>";
+                $tablestr .= "<td width=\"90px\"><input style=\"margin:0\" type=\"text\" class=\"$row->userid level\" id=\"".$row->userid."level\" value=\"$row->level\"></td>";
 
-                $tablestr .= "<td><input type=\"checkbox\" name=\"passed\" class=\"$row->userid passed\" onchange=\"passed(this.value)\"";
+                $tablestr .= "<td><input style=\"margin:0 0 0 1rem\" type=\"checkbox\" name=\"passed\" class=\"$row->userid passed checkboxintable\" onchange=\"passed(this.value)\"";
 
                 if ($row->passed) {
 
@@ -117,7 +115,7 @@
 
                 $tablestr .= "value=\"$row->userid\"></td>";
 
-                $tablestr .= "<td width=\"100px\"><input name=\"newpassword\" class=\"$row->userid btn\" id=\"$row->userid.btn\" type=\"button\" data-reveal-id=\"newpassword\" value=\"重设密码\"></td></tr>";
+                $tablestr .= "<td width=\"100px\"><input style=\"margin:0\" name=\"newpassword\" class=\"$row->userid btn\" id=\"$row->userid.btn\" onmouseover=\"userinfochange(this.id)\" type=\"button\" data-reveal-id=\"updateuserinfo\" value=\"重设密码\"></td></tr>";
 
             }
 
@@ -147,6 +145,12 @@
         public function newuser($data)
         {
             $this->db->insert('administrator', $data);
+        }
+
+        public function updateuserinfo($data)
+        {
+            $this->db->where('userid', $data['userid'])
+                ->replace('administrator', $data);
         }
 
 	}

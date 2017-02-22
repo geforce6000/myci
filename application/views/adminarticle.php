@@ -1,6 +1,10 @@
+<!--文章管理页视图-->
             <div class="large-10 columns" data-equalizer-watch>
                 
-                <h1 class="headline">文章管理</h1>
+                <h1 class="headline">文章管理
+
+                    <button class="right" id="newarticle" name="newarticle" onclick="newarticle()">新文章</button>
+                </h1>
 
                 <hr>
 
@@ -50,7 +54,7 @@
 
                         <div class="small-2 columns">
 
-                            <button class="tiny right" id="newarticle" name="newarticle" onclick="newarticle()">新文章</button>
+
                             <!--新建文章-->
 
                         </div>

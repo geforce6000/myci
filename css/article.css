@@ -26,9 +26,8 @@ a {
 	color: black;
 }
 
-.checkboxintable .center {
-	margin-top: 30px;
-	
+input{
+	margin: auto;
 }
 
 .categorylist {
@@ -47,7 +46,6 @@ a {
 
 .side-nav {
 	margin-top: 140px;
-	margin-bottom: 300px;
 
 }
 

@@ -38,7 +38,7 @@
 	</script>
 </head>
 <body>
-    
+    <!--文章编辑页面-->
 	<form name="articleedit" method="post" action="<?php echo site_url('article/articlePost')?>">
         <div class="row collapse">
 

@@ -2,6 +2,8 @@
 
 <div id="slidebox" class="slideBox">
 
+	<!--轮播图-->
+
   	<ul class="items">
 
 	  	<!--图片大小1000*300正好填满-->
