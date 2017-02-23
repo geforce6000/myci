@@ -6,13 +6,20 @@
 
 		public function getArticlebyId ($id)
 
-		{ //根据传入的$id查询一篇文章返回
+		{ //根据传入的$id查询一篇文章返回，同时每点击一次，点击数加1
 
 			$articlegot=$this->db->from('article')
 				->where('articleid',$id)
 				->get();
 
-			return $articlegot->result(); //返回结果是一个对象
+			$data = $articlegot->result(); //返回结果是一个对象
+
+            $data[0]->hits += 1;
+
+            $this->db->where('articleid', $id)
+                 ->replace('article', $data[0]);
+
+            return $articlegot->result();
 
 		}
 /*

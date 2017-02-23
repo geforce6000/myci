@@ -11,9 +11,9 @@
 
 		echo '<h4 class="text-center">'.$data->title.'</h2>';
 
-		echo '<h5 class="text-center">'.$data->author.'</h5>';
+		echo '<h5 class="text-center">作者：'.$data->author.'</h5>';
 
-		echo '<h5 class="text-center">'.$data->updatetime.'</h5>';
+		echo '<h5 class="text-center">更新时间：'.$data->updatetime.'    点击数: '.$data->hits.'</h5>';
 
 		echo '<hr>';
 

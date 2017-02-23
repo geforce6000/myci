@@ -282,8 +282,14 @@ class Admin extends CI_Controller
         $this->form_validation->set_message('required', '{field} 是必填项');
         $this->form_validation->set_message('max_length','{field} 最多包括 {param} 字符');
         $this->form_validation->set_message('matches', '两次输入密码必须一致');
+        $this->form_validation->set_message('valid_email', '邮件格式错误');
+        $this->form_validation->set_message('is_unique', '用户名已经被使用');
+        $this->form_validation->set_rules('username', '用户名', 'trim|required|min_length[3]|max_length[20]|is_unique[administrator.username]');
         $this->form_validation->set_rules('passwordup', '密码', 'trim|required|min_length[6]|max_length[20]');
         $this->form_validation->set_rules('passconfup', '重复密码', 'trim|required|min_length[6]|max_length[20]|matches[passwordup]');
+        $this->form_validation->set_rules('email', '邮箱', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phone', '电话', 'trim|required');
+        $this->form_validation->set_rules('level', '用户等级', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {//验证失败
             $res['errors'] = validation_errors();

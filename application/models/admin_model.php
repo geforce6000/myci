@@ -115,7 +115,7 @@
 
                 $tablestr .= "value=\"$row->userid\"></td>";
 
-                $tablestr .= "<td width=\"100px\"><input style=\"margin:0\" name=\"newpassword\" class=\"$row->userid btn\" id=\"$row->userid.btn\" onmouseover=\"userinfochange(this.id)\" type=\"button\" data-reveal-id=\"updateuserinfo\" value=\"重设密码\"></td></tr>";
+                $tablestr .= "<td width=\"100px\"><input style=\"margin:0\" name=\"newpassword\" class=\"$row->userid btn\" id=\"$row->userid.btn\" onmouseover=\"userinfochange(this.id)\" type=\"button\" data-reveal-id=\"updateuserinfo\" value=\"重设资料\"></td></tr>";
 
             }
 

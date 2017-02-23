@@ -48,22 +48,22 @@
             <input type="text" name="useridup" id="useridup" value="">
         </label>
         <label for="usernameup">用户名
-            <input type="text" name="usernameup" id="usernameup" value="">
+            <input type="text" name="usernameup" id="usernameup" value="<?php echo set_value('usernameup'); ?>">
         </label>
         <label for="passwordup">密码
             <input type="password" name="passwordup" id="passwordup" value="<?php echo set_value('passwordup'); ?>">
         </label>
-        <label for="passconfup">密码
+        <label for="passconfup">再输入一次密码
             <input type="password" name="passconfup" id="passconfup" value="<?php echo set_value('passconfup'); ?>">
         </label>
-        <label for="phoneup" class="hide">手机号码
-            <input type="text" name="phoneup" id="phoneup" value="">
+        <label for="phoneup">手机号码
+            <input type="text" name="phoneup" id="phoneup" value="<?php echo set_value('phoneup'); ?>">
         </label>
-        <label for="emailup" class="hide">电子邮箱
-            <input type="text" name="emailup" id="emailup" value="">
+        <label for="emailup">电子邮箱
+            <input type="text" name="emailup" id="emailup" value="<?php echo set_value('emailup'); ?>">
         </label>
-        <label for="levelup" class="hide">用户等级
-            <input type="text" name="levelup" id="levelup" value="">
+        <label for="levelup">用户等级
+            <input type="text" name="levelup" id="levelup" value="<?php echo set_value('levelup'); ?>">
         </label>
         <input class="button" id="userinfosubmit" type="submit" value="提交">
     </form>
