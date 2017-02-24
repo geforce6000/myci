@@ -21,6 +21,9 @@
 #buttontopage {
 	vertical-align: bottom;
 }
+#blockabovemenu {
+    height:150px;
+}
 
 a {
 	color: black;
@@ -45,7 +48,7 @@ input{
 }
 
 .side-nav {
-	margin-top: 140px;
+
 
 }
 

@@ -22,7 +22,7 @@
             return $articlegot->result();
 
 		}
-/*
+
 		public function changeback ($id, $cbget)
 
 		{ //配合article控制器的cf方法对数据库进行一次修改，使用了AR方法，挺好用
@@ -34,7 +34,7 @@
 
 		}
 
-*/
+
 		public function searchArticlebyKey($key, $startwith, $limit=20)
 
 		{ //根据传入的$key从article数据表中查询符合条件的数据，$startwith是传入偏移量，返回记录按articleid倒序排列

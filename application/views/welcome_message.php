@@ -1,6 +1,6 @@
 <div class="row">
 
-<div id="slidebox" class="slideBox">
+<div id="slidebox" class="slideBox large-12">
 
 	<!--轮播图-->
 

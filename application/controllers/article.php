@@ -43,7 +43,7 @@
 		
 	
 		}
-/*
+
 		public function cf()
 
 		{ //用于一次性数据转换，将原来数据库中的UploadFiles文件夹前加一个\，不可再用了
@@ -56,11 +56,11 @@
 
 			{
 
-				$cbdata['content']=str_replace("UploadFiles","\UploadFiles",$row->content);
+				$cbdata['content']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->content);
 
-				$cbdata['defaultpic']=str_replace("UploadFiles","\UploadFiles",$row->defaultpic);
+				$cbdata['defaultpic']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->defaultpic);
 
-				$cbdata['uploadfiles']=str_replace("UploadFiles","\UploadFiles",$row->uploadfiles);
+				$cbdata['uploadfiles']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->uploadfiles);
 
 				echo $this->article->changeback($row->articleid, $cbdata);
 				
@@ -68,7 +68,7 @@
 
 		}
 
-*/
+
 		public function search ()
 
 		{ //根据搜索关键字查询记录返回articlefound视图，每20条视图做一次分页

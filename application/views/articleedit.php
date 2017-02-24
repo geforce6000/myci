@@ -3,23 +3,23 @@
 <head>
 	<meta charset="utf-8" />
 	<title>文章编辑</title>
-	<link rel="stylesheet" href="/css/themes/default/default.css" />
-	<link rel="stylesheet" href="/css/plugins/code/prettify.css" />
-	<script charset="utf-8" src="/js/kindeditor.js"></script>
-	<script charset="utf-8" src="/js/lang/zh_CN.js"></script>
-	<script charset="utf-8" src="/js/plugins/code/prettify.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url("/css/themes/default/default.css"); ?>" />
+	<link rel="stylesheet" href="<?php echo base_url("/css/plugins/code/prettify.css"); ?>" />
+	<script charset="utf-8" src="<?php echo base_url("/js/kindeditor.js"); ?>"></script>
+	<script charset="utf-8" src="<?php echo base_url("/js/lang/zh_CN.js"); ?>"></script>
+	<script charset="utf-8" src="<?php echo base_url("/js/plugins/code/prettify.js"); ?>"></script>
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
   	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
   	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
   	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
   	<!-- 自制的css样式表 -->
-  	<link rel="stylesheet" href="\css\article.css">
+  	<link rel="stylesheet" href="<?php echo base_url("\css\article.css"); ?>">
 	<script>
 		KindEditor.ready(function(K) {
 			var editor1 = K.create('textarea[name="content1"]', {
-				cssPath : '/js/plugins/code/prettify.css',
-				uploadJson : '/js/upload_json.php',
-				fileManagerJson : '/js/file_manager_json.php',
+				cssPath : '<?php echo base_url("/js/plugins/code/prettify.css");?>',
+				uploadJson : '<?php echo base_url("/js/upload_json.php"); ?>',
+				fileManagerJson : '<?php echo base_url("/js/file_manager_json.php"); ?>',
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;
@@ -98,9 +98,9 @@
             </div>
             <div class="small-12 columns left">
                 正文
-		        <textarea name="content1" style="height:700px;visibility:hidden;"><?php echo htmlspecialchars($data->content); ?></textarea>
+		        <textarea name="content1" style="height:450px;visibility:hidden;"><?php echo htmlspecialchars($data->content); ?></textarea>
 		        <br/>
-		        <input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
+		        <input class="button" type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
 	        </div>
 	    </div>
     </form>

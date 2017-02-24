@@ -33,7 +33,7 @@
 
 			{
 
-				echo "<img class=\"categorylistthumb\" src=\"\image\logo-thumb.gif\" width=\"140\">";
+				echo "<img class=\"categorylistthumb\" src=".base_url("\image\logo-thumb.gif")." width=\"140\">";
 
 			}
 

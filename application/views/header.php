@@ -53,7 +53,7 @@
 -->
 
 	<!-- 自制的css样式表 -->
-	<link rel="stylesheet" href="\css\article.css">
+	<link rel="stylesheet" href="<?php echo base_url("css/article.css"); ?>">
 	
 </head>
 
@@ -71,7 +71,7 @@
 
 		<!--首页logo-->
 
-		<img src="\image\logo.png">
+		<img src="<?php echo base_url("/image/logo.png"); ?>">
 
 	</div>
 
