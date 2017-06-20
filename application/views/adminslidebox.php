@@ -55,7 +55,7 @@
     function aid(articleid,id)
     {  //当articleid栏的数据改动时，依据articleid去article表查询该ID所对应的title，并填到title框中
        //如未查到，表示该id无对应文章
-        $.post("/admin/slideboxchangeaid", { id : articleid } ,
+        $.post("<?php echo site_url("/admin/slideboxchangeaid")?>", { id : articleid } ,
             function(data, status)
             {
                 var title ="#"+id+"title";

@@ -17,7 +17,7 @@
 
 		{
 
-			echo "<h4><a href=".base_url('article/id/').$row->articleid.'>'.$row->title."</h4>";
+			//echo "<h4><a href=".base_url('article/id/').$row->articleid.'>'.$row->title."</h4>";
 
 			echo "<div class=\"medium-2 columns categorylist\">";
 
@@ -25,7 +25,7 @@
 
 			{
 
-				echo "<img class=\"categorylistthumb\" src=\"".$row->defaultpic."\" width=\"140\">";
+				echo "<img class=\"categorylistthumb\" src=\"".$row->defaultpic."\">";
 
 			}
 
@@ -41,9 +41,11 @@
 
 			echo "<div class=\"medium-10 columns\">";
 
+			echo "<h4><a href=".base_url('article/id/').$row->articleid.'>'.$row->title."</h4>";
+
 			$stripcontont=strip_tags($row->content);
 
-			$stripcontont=utf8Substr($stripcontont,0,200);
+			$stripcontont=utf8Substr($stripcontont,0,120);
 
 			echo "<p>$stripcontont...</p></p>$row->updatetime</p></div>";
 

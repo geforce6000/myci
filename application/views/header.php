@@ -9,28 +9,26 @@
 	<!-- 本站使用fundation5前端框架 -->
 
 	<!-- css 文件 -->
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
+	<!--link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css"-->
+	<link rel="stylesheet" href="<?php echo base_url("css/foundation.min.css"); ?>">
 
 	<!-- jQuery 库 -->
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!--script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script-->
+	<script src="<?php echo base_url("js/jquery.min.js"); ?>"></script>
 
 	<!-- JavaScript 文件 -->
-	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
+	<script src="<?php echo base_url("js/foundation.min.js"); ?>"></script>
 
 	<!-- modernizr.js 文件 -->
-	<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+	<script src="<?php echo base_url("js/modernizr.js"); ?>"></script>
 
-	<link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
+	<link rel="stylesheet" href="<?php echo base_url("css/foundation-icons.css"); ?>">
 
-	<!--script src=".\js\unslider-min.js"></script>
+	<!--welcome专用style-->
+	<link rel="stylesheet" href="<?php echo base_url("css/welcome.css"); ?>">
 
-	<link rel="stylesheet" href="\css\unslider.css"-->
-
-	<!--jQuery图片轮播(焦点图)插件>
-
-	<link href=".\css\jquery.slideBox.css" rel="stylesheet" type="text/css" />
-
-	<script src=".\js\jquery.slideBox.min.js" type="text/javascript"></script-->
+	<!-- 自制的css样式表 -->
+	<link rel="stylesheet" href="<?php echo base_url("css/article.css"); ?>">
 
 	<script>
 
@@ -46,14 +44,7 @@
 
 	</script>
 
-<!--
-	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-	<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
--->
 
-	<!-- 自制的css样式表 -->
-	<link rel="stylesheet" href="<?php echo base_url("css/article.css"); ?>">
 	
 </head>
 

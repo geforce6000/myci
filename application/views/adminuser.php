@@ -81,7 +81,7 @@
 
     function passed (id)
     {
-        $.post("/admin/adminpass", { id : id } ,
+        $.post("<?php echo site_url("/admin/adminpass")?>", { id : id } ,
 
             function(data,status)
 

@@ -105,7 +105,7 @@
         { //parrentcategory的onchange函数，使用ajax post方式取回childrencategory的数据并显示
 
 
-            $.post("/article/showChildCategory", { id : parrentcategory } ,
+            $.post("<?php echo site_url("/article/showChildCategory")?>", { id : parrentcategory } ,
 
                 function(data,status)
 
@@ -127,7 +127,7 @@
 
         {
 
-            $.post("/article/showArticleinTable", { id : childrencategory } ,
+            $.post("<?php echo site_url("/article/showArticleinTable")?>", { id : childrencategory } ,
 
                 function(data,status)
 
@@ -144,7 +144,7 @@
         function pageup()
 
         {
-            $.post("/article/pageup",1,
+            $.post("<?php echo site_url("/article/pageup")?>",1,
 
                 function(data, status)
 
@@ -161,7 +161,8 @@
         function pagedown()
 
         {
-            $.post("/article/pagedown",1,
+            $.post("<?php echo site_url("/article/pagedown")?>" ,1,
+            //$.post("/article/pagedown",1,
 
                 function(data, status)
 
@@ -179,7 +180,7 @@
 
         {
 
-            window.open("/article/articleedit");
+            window.open("<?php echo site_url("/article/articleedit")?>");
 
         }
 
@@ -187,7 +188,7 @@
 
         {
 
-            $.post("/article/articlepassed", { id : articleid } ,
+            $.post("<?php echo site_url("/article/articlepassed")?>", { id : articleid } ,
 
                 function(data,status)
 
@@ -205,7 +206,7 @@
 
         {
 
-            $.post("/article/articledeleted", { id : articleid } ,
+            $.post("<?php echo site_url("/article/articledeleted")?>", { id : articleid } ,
 
                 function(data,status)
 

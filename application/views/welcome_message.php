@@ -30,14 +30,20 @@
 
 			<hr>
 
-			<div id="news">
+			<div id="news" class="row">
 
 				<?php 
 
 					foreach ($newslist['data'] as $row)
 
 					{
-						echo "<a href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a><br>";
+						//echo "<div class='large-4 columns'>";
+
+						echo "<a href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a>";
+
+						echo $row->updatetime."<br>";
+
+						//echo "</div>";
 
 					}
 
@@ -46,6 +52,8 @@
 			</div>
 
 		</div>
+
+
 
 		<div class="medium-4 columns">
 
