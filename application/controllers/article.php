@@ -56,11 +56,11 @@
 
 			{
 
-				$cbdata['content']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->content);
+				$cbdata['content']=str_replace("\jjkjzz\UploadFiles","\jjkjzz\UploadFiles",$row->content);
 
-				$cbdata['defaultpic']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->defaultpic);
+				$cbdata['defaultpic']=str_replace("\jjkjzz\UploadFiles","\jjkjzz\UploadFiles",$row->defaultpic);
 
-				$cbdata['uploadfiles']=str_replace("\UploadFiles","\jjkjzz\UploadFiles",$row->uploadfiles);
+				$cbdata['uploadfiles']=str_replace("\jjkjzz\UploadFiles","\jjkjzz\UploadFiles",$row->uploadfiles);
 
 				echo $this->article->changeback($row->articleid, $cbdata);
 				

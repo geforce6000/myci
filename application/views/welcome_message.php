@@ -30,7 +30,7 @@
 
 			<hr>
 
-			<div id="news" class="row">
+			<div id="news" class="row panel">
 
 				<?php 
 
@@ -61,7 +61,7 @@
 
 			<hr>
 
-			<div id="bulletin">
+			<div id="bulletin" class="panel">
 
 				<?php 
 

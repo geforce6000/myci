@@ -41,19 +41,29 @@ class Welcome extends CI_Controller {
 
 		$res['bulletin']=$this->article->getarticlebyclass(100,0,3);
 
+		$res['education']=$this->article->getarticlebyclass(9,0,3);
+
+		$res['announce']=$this->article->getarticlebyclass(2,0,3);
+
+		$res['recruit']=$this->article->getarticlebyclass(107,0,3);
+
+		$res['party-work']=$this->article->getarticlebyclass(82,0,1);
+
 		$this->load->model('Admin_model', 'admin');
 
 		$res['slidebox'] = $this->admin->slideboxforwelcome();
 
 		$this->load->helper('url');
 
-		$this->load->view('header',$res);
+		//$this->load->view('header',$res);
 
-		$this->load->view('nav');
+		//$this->load->view('nav');
 
-		$this->load->view('welcome_message');
+		//$this->load->view('welcome_message');
 
-		$this->load->view('footer');
+		//$this->load->view('footer');
+
+		$this->load->view('homepage',$res);
 
 	}
 

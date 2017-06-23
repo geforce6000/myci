@@ -45,9 +45,9 @@
 			    	<a href="http://zjsz.jxedu.gov.cn/MAOA/system/touchdesk/login.jsp">江西省职业教育综合管理平台</a>
 			    </div>
 			    <div class="outlink">
-                    <a>老师工作坊</a>
-			    	<a>九江分类信息网</a>
-			    	<a>九江论坛</a>
+                    <a href="http://workshop.jxteacher.com/">老师工作坊</a>
+			    	<a href="http://f.jjxsw.cn/">九江分类信息网</a>
+			    	<a href="http://www.jjxsw.cn/">九江论坛</a>
 			    </div>
 		    </div>
 	    </div>
@@ -55,7 +55,7 @@
 	<hr>
     <div class="row copyright">
         <div class="medium-2 columns qrcode">
-            <img src="<? echo base_url('image/qrcode.jpg'); ?>" alt="学校官方二维码">
+            <img src="<? echo base_url('image/qrcode.jpg'); ?>">
         </div>
         <div class="medium-10 columns address-text">
 	        <p style="text-align:center;">

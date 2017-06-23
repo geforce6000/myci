@@ -1,0 +1,271 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+img,
+div,
+span,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+}
+body {
+  background-color: #f5f5f5;
+}
+div.logo {
+  width: 1000px;
+  height: 120px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.logo div.logo-badge {
+  width: 700px;
+}
+div.logo div.logo-badge img {
+  margin-left: 30px;
+}
+div.logo form.logo-search {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.header {
+  background-color: #2e8ece;
+  height: 40px;
+}
+div.header div.navbar {
+  width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #2e8ece;
+  display: flex;
+  justify-content: space-around;
+}
+div.header div.navbar div.dropdown {
+  width: 125px;
+  line-height: 40px;
+  text-align: center;
+}
+div.header div.navbar div.dropdown a {
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+div.header div.navbar div.dropdown div.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2e8ece;
+  min-width: 125px;
+}
+div.header div.navbar div.dropdown div.dropdown-content a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  z-index: 999;
+}
+div.header div.navbar div.dropdown div.dropdown-content a:hover {
+  background-color: #1b86c0;
+}
+div.header div.navbar .dropdown:hover {
+  background-color: #1b86c0;
+}
+div.header div.navbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+div.banner {
+  height: 100px;
+  margin: 0 auto;
+  background-color: #666600;
+  z-index: -1;
+}
+div.main {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+div.main h6.main-h6 {
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  font-family: 微软雅黑;
+  font-weight: normal;
+  margin-left: 20px;
+  color: #1783be;
+}
+div.main a {
+  font-family: 微软雅黑;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+}
+div.main p {
+  font-family: 微软雅黑;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+div.main .content {
+  margin: 10px 20px;
+}
+div.main .line {
+  border: 1px solid;
+  width: 97%;
+  margin: 10px auto 0;
+  background-color: #1783be;
+  color: #1783be;
+}
+div.main div.news {
+  width: 1000px;
+}
+div.main div.news div.news-column {
+  display: flex;
+}
+div.main div.news div.news-column div.columns.content {
+  width: 33.3%;
+}
+div.main div.news div.news-column div.columns.content .news-header {
+  width: 100%;
+  height: 42px;
+}
+div.main div.news div.news-column div.columns.content .categorylistthumb {
+  width: 100%;
+}
+div.main div.news div.news-column div.columns.content .news-updatetime {
+  float: right;
+}
+div.main div.party-banner {
+  width: 100%;
+  height: 100px;
+  margin: 10px auto;
+}
+div.main div.line-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.main div.line-3 div.education {
+  width: 66%;
+  height: 230px;
+}
+div.main div.line-3 div.education div.education-column {
+  display: flex;
+}
+div.main div.line-3 div.announce {
+  width: 33%;
+  height: 230px;
+}
+div.main div.line-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.main div.line-4 div.recruit {
+  width: 33%;
+  height: 200px;
+}
+div.main div.line-4 div.party-work {
+  width: 33%;
+  height: 200px;
+}
+div.main div.line-4 div.public-service {
+  width: 33%;
+  height: 200px;
+}
+div.footer {
+  background-color: #3795c7;
+  color: #FFF;
+}
+div.footer div.links {
+  width: 1000px;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+}
+div.footer div.links h6 {
+  font-family: 微软雅黑;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 28px;
+}
+div.footer div.links a {
+  font-family: 微软雅黑;
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration: none;
+  color: #FFF;
+}
+div.footer div.links div.links-column-1 {
+  width: 480px;
+  height: 180px;
+  background-color: #3795c7;
+  padding: 20px 0 20px 20px;
+}
+div.footer div.links div.links-column-1 a {
+  line-height: 25px;
+  margin-right: 12em;
+}
+div.footer div.links div.links-column-2 {
+  width: 480px;
+  height: 180px;
+  background-color: #3795c7;
+  padding: 20px 0 20px 20px;
+}
+div.footer div.links div.links-column-2 a {
+  line-height: 25px;
+}
+div.footer div.links div.links-column-2 div.quicksearch a {
+  margin-right: 2em;
+}
+div.footer div.links div.links-column-2 div.friendlinks {
+  margin-top: 20px;
+}
+div.footer div.links div.links-column-2 div.friendlinks a {
+  margin-right: 1.5em;
+}
+div.wraper-copyright {
+  background-color: #1b86c0;
+  color: #FFF;
+}
+div.wraper-copyright div.copyright {
+  width: 1000px;
+  height: 150px;
+  margin: 0 auto;
+  background-color: #1b86c0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: 微软雅黑;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+}
+div.wraper-copyright div.copyright div.columns-1 {
+  width: 300px;
+  height: 150px;
+}
+div.wraper-copyright div.copyright div.columns-1 img {
+  width: 150px;
+  height: 150px;
+  margin: -30px 0 0 80px;
+}
+div.wraper-copyright div.copyright div.columns-2 {
+  width: 700px;
+  height: 150px;
+  line-height: 2em;
+  text-align: center;
+}
+div.wraper-copyright div.copyright div.columns-2 div.address-text-1 {
+  margin-top: 46px;
+}
