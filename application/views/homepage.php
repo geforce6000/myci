@@ -13,11 +13,11 @@
         </div>
         <!-- 搜索框 -->
         <form action="<?php echo site_url('article/search'); ?>" method="post" class="logo-search">
-            <div class="">
-                <input name="forsearching" type="text" placeholder="搜索">
+            <div class="inputbox">
+                <input class="" name="forsearching" type="text" placeholder="">
             </div>
-            <div class="">
-                <input type="submit" value="搜索" class="">
+            <div class="submitbox">
+                <input class="" type="submit" value="搜索">
             </div>
         </form>
     </div>

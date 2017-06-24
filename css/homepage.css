@@ -35,9 +35,27 @@ div.logo div.logo-badge img {
 }
 div.logo form.logo-search {
   width: 300px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+div.logo div.inputbox {
+  width: 180px;
+  height: 100%;
+}
+div.logo div.inputbox input {
+  width: 172px;
+  height: 26px;
+  padding-left: 5px;
+}
+div.logo div.submitbox {
+  width: 50px;
+  height: 100%;
+}
+div.logo div.submitbox input {
+  width: 100%;
+  height: 100%;
 }
 div.header {
   background-color: #2e8ece;
@@ -106,6 +124,7 @@ div.main a {
   font-family: 微软雅黑;
   font-size: 14px;
   line-height: 16px;
+  color: black;
   text-decoration: none;
 }
 div.main p {
@@ -264,7 +283,7 @@ div.wraper-copyright div.copyright div.columns-2 {
   width: 700px;
   height: 150px;
   line-height: 2em;
-  text-align: center;
+  padding-left: 80px;
 }
 div.wraper-copyright div.copyright div.columns-2 div.address-text-1 {
   margin-top: 46px;
