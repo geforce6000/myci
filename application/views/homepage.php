@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="<?php echo base_url("js/jquery.min.js"); ?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url("css/homepage.css"); ?>">
+    <link rel="stylesheet" href="<?php echo base_url("css/homepage2.css"); ?>">
     <title>江西九江科技中等专业学校欢迎你</title>
 </head>
 <body>
@@ -110,7 +110,8 @@
                     <?php
                     foreach ($announce['data'] as $row) {
                         echo "<div class=\"columns content\">";
-                        echo "<a href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a>";
+                        echo "<span class='small-text'>".utf8Substr($row->updatetime,0,10)."</span>";
+                        echo "<a class='small-text' href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a>";
                         echo "</div>";
                     }
                     ?>
@@ -121,14 +122,56 @@
             <div class="recruit">
                 <div class="line"></div>
                 <h6 class="main-h6">招生就业</h6>
+                <?php
+                foreach ($recruit['data'] as $row) {
+                    echo "<div class=\"columns content\">";
+                    echo "<span class='small-text'>".utf8Substr($row->updatetime,0,10)."</span>";
+                    echo "<a class='small-text' href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a>";
+                    echo "</div>";
+                }
+                ?>
             </div>
-            <div class="party-work">
+            <div class="partywork">
                 <div class="line"></div>
                 <h6 class="main-h6">党群工作</h6>
+                <?php
+                foreach ($partywork['data'] as $row) {
+                    echo "<div class=\"columns content\">";
+                    echo "<span class='small-text'>".utf8Substr($row->updatetime,0,10)."</span>";
+                    echo "<a class='small-text' href=\"".site_url('article/id/').$row->articleid."\">".$row->title."</a>";
+                    echo "</div>";
+                }
+                ?>
             </div>
-            <div class="public-service">
+            <div class="publicservice">
                 <div class="line"></div>
                 <h6 class="main-h6">公共服务</h6>
+                <div class="icons">
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/xzxx.png"); ?>"></div>
+                        <div class="icon-text"><a href="">校长信箱</a></div>
+                    </div>
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/zxly.png"); ?>"></div>
+                        <div class="icon-text"><a href="">在线留言</a></div>
+                    </div>
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/zxbm.png"); ?>"></div>
+                        <div class="icon-text"><a href="https://218.204.71.43:6443/">VPN</a></div>
+                    </div>
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/server.png"); ?>"></div>
+                        <div class="icon-text"><a href="">后台入口</a></div>
+                    </div>
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/bym.png"); ?>"></div>
+                        <div class="icon-text"><a href="http://jxnet.jxedu.gov.cn/jxzcj/searchzsh.jsp">毕业证验证</a></div>
+                    </div>
+                    <div class="icon">
+                        <div class="icon-logo"><img src="<?php echo base_url("/image/szhxy.png"); ?>"></div>
+                        <div class="icon-text"><a href="http://www.jjkjzz.com:8680/">数字化校园</a></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -154,6 +197,7 @@
                     <a href="<? echo base_url('article/category/97/0'); ?>">新闻中心</a>
                 </div>
             </div>
+            <div class="border-column"></div>
             <div class="links-column-2">
                 <div class="quicksearch">
                     <h6>常用查询</h6>
@@ -176,7 +220,7 @@
                         <a href="http://zjsz.jxedu.gov.cn/MAOA/system/touchdesk/login.jsp">江西省职业教育综合管理平台</a>
                     </div>
                     <div class="outlink">
-                        <a href="http://workshop.jxteacher.com/">老师工作坊</a>
+                        <a href="http://workshop.jxteacher.com/">教师工作坊</a>
                         <a href="http://f.jjxsw.cn/">九江分类信息网</a>
                         <a href="http://www.jjxsw.cn/">九江论坛</a>
                     </div>

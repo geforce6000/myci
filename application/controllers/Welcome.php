@@ -45,9 +45,9 @@ class Welcome extends CI_Controller {
 
 		$res['announce']=$this->article->getarticlebyclass(2,0,3);
 
-		$res['recruit']=$this->article->getarticlebyclass(107,0,3);
+		$res['recruit']=$this->article->getarticlebyclass(107,0,5);
 
-		$res['party-work']=$this->article->getarticlebyclass(82,0,1);
+		$res['partywork']=$this->article->getarticlebyclass(82,0,5);
 
 		$this->load->model('Admin_model', 'admin');
 

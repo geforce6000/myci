@@ -46,12 +46,13 @@ div.logo div.inputbox {
 }
 div.logo div.inputbox input {
   width: 172px;
-  height: 26px;
+  height: 85%;
   padding-left: 5px;
 }
 div.logo div.submitbox {
   width: 50px;
   height: 100%;
+  margin-left: 10px;
 }
 div.logo div.submitbox input {
   width: 100%;
@@ -68,6 +69,7 @@ div.header div.navbar {
   background-color: #2e8ece;
   display: flex;
   justify-content: space-around;
+  font-family: 微软雅黑, 黑体;
 }
 div.header div.navbar div.dropdown {
   width: 125px;
@@ -93,19 +95,28 @@ div.header div.navbar div.dropdown div.dropdown-content a {
 }
 div.header div.navbar div.dropdown div.dropdown-content a:hover {
   background-color: #1b86c0;
+  z-index: 999;
 }
 div.header div.navbar .dropdown:hover {
   background-color: #1b86c0;
+  z-index: 999;
 }
 div.header div.navbar .dropdown:hover .dropdown-content {
   display: block;
+  z-index: 999;
 }
 div.banner {
   height: 100px;
   margin: 0 auto;
   background-color: #666600;
-  z-index: -1;
 }
+div.banner a {
+  font-family: 微软雅黑, 黑体;
+}
+div.banner a:hover {
+  text-decoration: none;
+}
+
 div.main {
   width: 1000px;
   margin: 0 auto;
@@ -115,7 +126,7 @@ div.main h6.main-h6 {
   height: 50px;
   line-height: 50px;
   font-size: 20px;
-  font-family: 微软雅黑;
+  font-family: 微软雅黑, 黑体;
   font-weight: normal;
   margin-left: 20px;
   color: #1783be;
@@ -134,6 +145,13 @@ div.main p {
   text-decoration: none;
   margin-top: 10px;
 }
+div.main .small-text {
+  font-family: 微软雅黑;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: none;
+  margin-right: 10px;
+}
 div.main .content {
   margin: 10px 20px;
 }
@@ -144,8 +162,12 @@ div.main .line {
   background-color: #1783be;
   color: #1783be;
 }
+div.main .categorylistthumb {
+  width: 100%;
+}
 div.main div.news {
   width: 1000px;
+  height: 386px;
 }
 div.main div.news div.news-column {
   display: flex;
@@ -157,9 +179,6 @@ div.main div.news div.news-column div.columns.content .news-header {
   width: 100%;
   height: 42px;
 }
-div.main div.news div.news-column div.columns.content .categorylistthumb {
-  width: 100%;
-}
 div.main div.news div.news-column div.columns.content .news-updatetime {
   float: right;
 }
@@ -169,6 +188,8 @@ div.main div.party-banner {
   margin: 10px auto;
 }
 div.main div.line-3 {
+  width: 1000px;
+  height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,21 +206,35 @@ div.main div.line-3 div.announce {
   height: 230px;
 }
 div.main div.line-4 {
+  width: 1000px;
+  height: 260px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 div.main div.line-4 div.recruit {
   width: 33%;
-  height: 200px;
+  height: 100%;
 }
-div.main div.line-4 div.party-work {
+div.main div.line-4 div.partywork {
   width: 33%;
-  height: 200px;
+  height: 100%;
 }
-div.main div.line-4 div.public-service {
+div.main div.line-4 div.publicservice {
   width: 33%;
-  height: 200px;
+  height: 100%;
+}
+div.main div.line-4 div.publicservice div.icons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+div.main div.line-4 div.publicservice div.icons div.icon {
+  width: 109px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 div.footer {
   background-color: #3795c7;
@@ -226,7 +261,7 @@ div.footer div.links a {
   color: #FFF;
 }
 div.footer div.links div.links-column-1 {
-  width: 480px;
+  width: 430px;
   height: 180px;
   background-color: #3795c7;
   padding: 20px 0 20px 20px;
@@ -235,8 +270,15 @@ div.footer div.links div.links-column-1 a {
   line-height: 25px;
   margin-right: 12em;
 }
+div.footer div.links div.border-column {
+  width: 0;
+  height: 160px;
+  border: 1px solid #1b86c0;
+  margin-bottom: 30px;
+  margin-right: 40px;
+}
 div.footer div.links div.links-column-2 {
-  width: 480px;
+  width: 470px;
   height: 180px;
   background-color: #3795c7;
   padding: 20px 0 20px 20px;
