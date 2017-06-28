@@ -62,7 +62,7 @@ div.header {
   background-color: #2e8ece;
   height: 40px;
 }
-div.header div.navbar {
+div.header div.nav-bar {
   width: 1000px;
   margin: 0 auto;
   overflow: hidden;
@@ -71,37 +71,37 @@ div.header div.navbar {
   justify-content: space-around;
   font-family: 微软雅黑, 黑体;
 }
-div.header div.navbar div.dropdown {
+div.header div.nav-bar div.drop-down {
   width: 125px;
   line-height: 40px;
   text-align: center;
 }
-div.header div.navbar div.dropdown a {
+div.header div.nav-bar div.drop-down a {
   text-align: center;
   color: #fff;
   text-decoration: none;
 }
-div.header div.navbar div.dropdown div.dropdown-content {
+div.header div.nav-bar div.drop-down div.drop-down-content {
   display: none;
   position: absolute;
   background-color: #2e8ece;
   min-width: 125px;
 }
-div.header div.navbar div.dropdown div.dropdown-content a {
+div.header div.nav-bar div.drop-down div.drop-down-content a {
   color: #fff;
   text-decoration: none;
   display: block;
   z-index: 999;
 }
-div.header div.navbar div.dropdown div.dropdown-content a:hover {
+div.header div.nav-bar div.drop-down div.drop-down-content a:hover {
   background-color: #1b86c0;
   z-index: 999;
 }
-div.header div.navbar .dropdown:hover {
+div.header div.nav-bar .drop-down:hover {
   background-color: #1b86c0;
   z-index: 999;
 }
-div.header div.navbar .dropdown:hover .dropdown-content {
+div.header div.nav-bar .drop-down:hover .drop-down-content {
   display: block;
   z-index: 999;
 }
@@ -116,7 +116,10 @@ div.banner a {
 div.banner a:hover {
   text-decoration: none;
 }
-
+#myCarousel a {
+  color: #fff;
+  text-decoration: none;
+}
 div.main {
   width: 1000px;
   margin: 0 auto;
@@ -261,8 +264,8 @@ div.footer div.links a {
   color: #FFF;
 }
 div.footer div.links div.links-column-1 {
-  width: 430px;
-  height: 180px;
+  width: 480px;
+  height: 220px;
   background-color: #3795c7;
   padding: 20px 0 20px 20px;
 }
@@ -270,16 +273,9 @@ div.footer div.links div.links-column-1 a {
   line-height: 25px;
   margin-right: 12em;
 }
-div.footer div.links div.border-column {
-  width: 0;
-  height: 160px;
-  border: 1px solid #1b86c0;
-  margin-bottom: 30px;
-  margin-right: 40px;
-}
 div.footer div.links div.links-column-2 {
-  width: 470px;
-  height: 180px;
+  width: 480px;
+  height: 220px;
   background-color: #3795c7;
   padding: 20px 0 20px 20px;
 }

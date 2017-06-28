@@ -2,6 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="<?php echo base_url("js/jquery.min.js"); ?>"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url("css/homepage2.css"); ?>">
     <title>江西九江科技中等专业学校欢迎你</title>
 </head>
@@ -23,34 +25,68 @@
     </div>
 
     <div class="header">
-        <div class="navbar">
-            <div class="dropdown">
+        <div class="nav-bar">
+            <div class="drop-down">
                 <a href="<?php echo site_url();?>">首页</a>
             </div>
             <?php foreach ($parrent as $row): ?>
-                <div class="dropdown">
+                <div class="drop-down">
                     <a href="<?php echo site_url('article/category/').$row->classid.'/0';?>"><?=$row->classname?></a>
-                    <div class="dropdown-content">
+                    <div class="drop-down-content">
                         <?php foreach ($children[$row->classid] as $cname): ?>
                             <a href="<?php echo site_url('article/category/').$cname->classid.'/0';?>"><?=$cname->classname?></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="dropdown">
+            <div class="drop-down">
                 <a href="#">名师工坊</a>
             </div>
         </div>
     </div>
 
-    <div id="slidebox" class="slideBox banner">
-        <!--轮播图-->
-        <ul class="items">
-            <!--图片大小1000*300正好填满-->
-            <?php foreach($slidebox as $row): ?>
-                <li><a href="<?php echo site_url("article/id/").$row->articleid; ?>" title="<?=$row->title?>"><img src="<?=$row->imagefile?>"></a></li>
-            <?php endforeach; ?>
-        </ul>
+    <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="<?php echo base_url($slidebox[0]->imagefile); ?>" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="<?php echo site_url("article/id/").$slidebox[0]->articleid; ?>"><?php echo $slidebox[0]->title; ?></a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="<?php echo base_url($slidebox[1]->imagefile); ?>" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="<?php echo site_url("article/id/").$slidebox[1]->articleid; ?>"><?php echo $slidebox[1]->title; ?></a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="<?php echo base_url($slidebox[2]->imagefile); ?>" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="<?php echo site_url("article/id/").$slidebox[2]->articleid; ?>"><?php echo $slidebox[2]->title; ?></a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="<?php echo base_url($slidebox[3]->imagefile); ?>" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="<?php echo site_url("article/id/").$slidebox[3]->articleid; ?>"><?php echo $slidebox[3]->title; ?></a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="<?php echo base_url($slidebox[4]->imagefile); ?>" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="<?php echo site_url("article/id/").$slidebox[4]->articleid; ?>"><?php echo $slidebox[4]->title; ?></a>
+                </div>
+            </div>
+        </div>
+        <div class="arrow"><a class="carousel-control left" href="#myCarousel"data-slide="prev">&lsaquo;</div></a>
+        <div class="arrow"><a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</div></a>
     </div>
 
     <div class="main">
@@ -197,7 +233,6 @@
                     <a href="<? echo base_url('article/category/97/0'); ?>">新闻中心</a>
                 </div>
             </div>
-            <div class="border-column"></div>
             <div class="links-column-2">
                 <div class="quicksearch">
                     <h6>常用查询</h6>
@@ -244,18 +279,5 @@
             </div>
         </div>
     </div>
-
-
-    <link href="<?php echo base_url("css/jquery.slideBox.css"); ?>" rel="stylesheet" type="text/css" />
-    <script src="<?php echo base_url("js/jquery.slideBox.min.js"); ?>" type="text/javascript"></script>
-    <script>
-        $('#slidebox').slideBox({
-            duration : 0.3,//滚动持续时间，单位：秒
-            easing : 'linear',//swing,linear//滚动特效
-            delay : 5,//滚动延迟时间，单位：秒
-            hideClickBar : false,//不自动隐藏点选按键
-            clickBarRadius : 10
-        });
-    </script>
 </body>
 </html>
