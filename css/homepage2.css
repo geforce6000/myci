@@ -46,7 +46,7 @@ div.logo div.inputbox {
 }
 div.logo div.inputbox input {
   width: 172px;
-  height: 85%;
+  height: 100%;
   padding-left: 5px;
 }
 div.logo div.submitbox {
@@ -116,10 +116,23 @@ div.banner a {
 div.banner a:hover {
   text-decoration: none;
 }
+#myCarousel {
+  min-width: 1000px;
+  margin: 0 auto;
+}
 #myCarousel a {
   color: #fff;
   text-decoration: none;
+  /*margin-top: 160px;
+  margin-bottom: 190px;*/
+  margin-left: 40px;
+  margin-right: 40px;
+
+  top: 46%;
+  width: 40px;
+  height: 32px;
 }
+
 div.main {
   width: 1000px;
   margin: 0 auto;
