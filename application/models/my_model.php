@@ -44,10 +44,10 @@
 			$config['next_link'] = FALSE;
 			//不显示下一页标记
 
-			$config['full_tag_open'] = '<div class="pagination-centered"><ul class="pagination">';
+			$config['full_tag_open'] = '<div class="mypagi"><div class="forcenter"><ul class="pagination">';
 			//加在整个分页链接前面的标记，这里加的是与Fundation5分页标记相配的html标记
 
-			$config['full_tag_close'] = '</ul></div>';
+			$config['full_tag_close'] = '</ul></div></div>';
 			//加在整个分页链接最后的标记
 
 			$config['num_tag_open'] = '<li>';

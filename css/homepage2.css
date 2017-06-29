@@ -252,6 +252,90 @@ div.main div.line-4 div.publicservice div.icons div.icon {
   align-items: center;
   flex-direction: column;
 }
+div.article {
+  padding: 20px 0;
+  display: flex;
+}
+div.article h4 {
+  line-height: 30px;
+  font-family: 微软雅黑, 黑体;
+}
+div.article h5 {
+  line-height: 26px;
+}
+div.article p {
+  line-height: 18px;
+}
+div.article div.left-column {
+  width: 700px;
+  margin: 0 30px;
+}
+div.article div.left-column img {
+  width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+div.article div.right-column {
+  width: 300px;
+  border-left: 1px solid #1b86c0;
+}
+div.article div.right-column h4 {
+  margin-left: 20px;
+  margin-top: 25px;
+}
+div.article-list {
+  padding: 20px 20px;
+}
+div.article-list p {
+  margin-top: 0;
+  font-family: 微软雅黑, 黑体;
+  font-size: 16px;
+  line-height: 20px;
+}
+div.article-list {
+  display: flex;
+}
+div.article-list div.left-column {
+  width: 680px;
+}
+div.article-list div.right-column {
+  margin-left: 17px;
+  border-left: 1px solid #1b86c0;
+}
+div.article-list div.right-column h4 {
+  margin-left: 20px;
+  margin-top: 30px;
+}
+div.article-list div.news-line {
+  display: flex;
+}
+div.article-list div.news-line div.column-pic {
+  width: 200px;
+}
+div.article-list div.news-line div.column-pic img {
+  width: 140px;
+  display: block;
+  margin: 0 auto;
+}
+div.article-list div.news-line div.column-title {
+  width: 500px;
+}
+div.article-list div.news-line div.column-title h4 {
+  font-size: 20px;
+  line-height: 30px;
+}
+div.article-list div.news-line div.column-title p {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 10px 0
+}
+div.main div.mypagi {
+  display: flex;
+  justify-content: center;
+}
+div.article-found {
+  padding: 20px;
+}
 div.footer {
   background-color: #3795c7;
   color: #FFF;
