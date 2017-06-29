@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -38,8 +38,8 @@
             </div>
         </div>
     </div>
-    <div class="arrow"><a class="carousel-control left" href="#myCarousel"data-slide="prev">&lsaquo;</div></a>
-    <div class="arrow"><a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</div></a>
+    <div class="arrow"><a class="carousel-control left" href="#myCarousel"data-slide="prev">&lsaquo;</a></div>
+    <div class="arrow"><a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</a></div>
 </div>
 
 <div class="main">
