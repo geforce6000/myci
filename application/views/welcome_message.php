@@ -150,7 +150,7 @@
                 </div>
                 <div class="icon">
                     <div class="icon-logo"><img src="<?php echo base_url("/image/server.png"); ?>"></div>
-                    <div class="icon-text"><a href="">后台入口</a></div>
+                    <div class="icon-text"><a href="<?php echo site_url("admin/loginpage"); ?>">后台入口</a></div>
                 </div>
                 <div class="icon">
                     <div class="icon-logo"><img src="<?php echo base_url("/image/bym.png"); ?>"></div>

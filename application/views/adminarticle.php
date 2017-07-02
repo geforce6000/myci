@@ -91,89 +91,42 @@
 
     <script>
       
-        $(document).ready(function() 
-
-        {
-
+        $(document).ready(function() {
             $(document).foundation();
             //fundation初始化
-
         })
 
-        function changechildren(parrentcategory) 
-
-        { //parrentcategory的onchange函数，使用ajax post方式取回childrencategory的数据并显示
-
-
+        function changechildren(parrentcategory) {
+            //parrentcategory的onchange函数，使用ajax post方式取回childrencategory的数据并显示
             $.post("<?php echo site_url("/article/showChildCategory")?>", { id : parrentcategory } ,
-
                 function(data,status)
-
             {
-
             $("#childrencategory").html(data);
             //显示在childrencategory中的取回数据
-
             changearticleintable($("#childrencategory").val());
             //同时改变table中的数据，传递的值是childrencategory第一项的值
-
-            }
-
-          )
-
+            })
         }
 
-        function changearticleintable(childrencategory) 
-
-        {
-
+        function changearticleintable(childrencategory) {
             $.post("<?php echo site_url("/article/showArticleinTable")?>", { id : childrencategory } ,
-
-                function(data,status)
-
-            {
-
+                function(data,status) {
             $("#articleintable").html(data);
-
-            }
-
-          )
-
+            })
         }
 
-        function pageup()
-
-        {
+        function pageup() {
             $.post("<?php echo site_url("/article/pageup")?>",1,
-
-                function(data, status)
-
-            {
-
-            $("#articleintable").html(data);
-
-            }
-
-            )
-
+                function(data, status) {
+                    $("#articleintable").html(data);
+                })
         }
 
-        function pagedown()
-
-        {
+        function pagedown() {
             $.post("<?php echo site_url("/article/pagedown")?>" ,1,
-            //$.post("/article/pagedown",1,
-
-                function(data, status)
-
-            {
-
-            $("#articleintable").html(data);
-
-            }
-
-            )
-
+                function(data, status) {
+                $("#articleintable").html(data);
+            })
         }
 
         function newarticle()

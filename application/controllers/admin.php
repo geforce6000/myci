@@ -3,6 +3,15 @@
 class Admin extends CI_Controller
 
 {
+    public function loginpage() {
+        $this->load->model('Nav_model', 'nav');
+        //调用Nav_model模型，起别名nav
+        $res=$this->nav->nav();
+        $this->load->view('header');
+        $this->load->view('nav',$res);
+        $this->load->view('adminlogin'); //把数据传递给视图
+        $this->load->view('footer');
+    }
 
     public function login()
 
@@ -79,15 +88,14 @@ class Admin extends CI_Controller
 
                 $this->session->set_userdata('childrencategory', 2);
                 //同上一行
-
                 $this->session->set_userdata('startwith', 0);
-                //设定翻页时的偏移量，初始值为0
+                    //设定翻页时的偏移量，初始值为0
 
                 $this->load->view('adminheader', $res);
 
                 $this->load->view('adminarticle');
 
-                $this->load->view('footer');
+                //$this->load->view('footer');
 
             } else //普通管理员，只具备部分权限（目前考虑只有1修改自己的信息，2发文，3删除自己发出但未审核的文，2和3做到一个页面里）
 
@@ -122,7 +130,7 @@ class Admin extends CI_Controller
 
         $this->load->view('adminslidebox');
 
-        $this->load->view('footer');
+        //$this->load->view('footer');
 
     }
 
@@ -157,8 +165,8 @@ class Admin extends CI_Controller
         $config['upload_path'] = './uploadfiles/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 1000;
-        $config['max_width'] = 1000;
-        $config['max_height'] = 768;
+        $config['max_width'] = 1920;
+        $config['max_height'] = 576;
         $config['file_name'] = uniqid();
 
         $this->load->library('upload', $config);
@@ -205,7 +213,7 @@ class Admin extends CI_Controller
 
         $this->load->view('adminuser');
 
-        $this->load->view('footer');
+        //$this->load->view('footer');
 
     }
 
@@ -254,7 +262,7 @@ class Admin extends CI_Controller
 
             $this->load->view('adminusererrors');
 
-            $this->load->view('footer');
+            //$this->load->view('footer');
 
         }
         else
@@ -304,7 +312,7 @@ class Admin extends CI_Controller
 
             $this->load->view('adminusererrors');
 
-            $this->load->view('footer');
+            //$this->load->view('footer');
         }
 
         else {
