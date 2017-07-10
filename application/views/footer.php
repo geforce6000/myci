@@ -63,6 +63,9 @@
                 学校地址：江西省九江市学府二路1号　邮编：332000  技术支持：九江科技中专信息中心
             </div>
         </div>
+        <div class="shiye-logo">
+            <script type="text/javascript">document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/15/228/0000/41124165/CA152280000411241650003.js' type='text/javascript'%3E%3C/script%3E"));</script>
+        </div>
     </div>
 </div>
 </body>
